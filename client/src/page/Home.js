@@ -40,7 +40,7 @@ const Home = () => {
                     <div className="h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >Yogyakarta</div>
                     <div className="h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >Surabaya</div>
                     <div className="h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >Semarang</div>
-                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >See more >></div>
+                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >See more </div>
 
                 </div>
             </content>
