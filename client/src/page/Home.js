@@ -35,6 +35,7 @@ const Home = () => {
                     Popular Kost Places
                 </h1>
                 <div className="grid grid-cols-2 md:grid-cols-3 sm: gap-6 mt-6">
+
                     <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer">Bandung</div>
                     <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Jakarta</div>
                     <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Yogyakarta</div>
