@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <>
             <Header />
-            <main className="container flex items-center justify-between mx-auto my-12 px-6 md:px-6 lg:px-0 lg:my-32">
+            <main className="container flex items-center justify-between mx-auto my-12 px-12 lg:px-0 md:px-6  lg:my-32">
                 <div className="text-center lg:text-left lg:w-1/3 p-3">
                     <h1 className="text-green text-4xl font-bold tracking-tighter">
                         Kosutan.
@@ -35,12 +35,12 @@ const Home = () => {
                     Popular Kost Places
                 </h1>
                 <div className="grid grid-cols-2 md:grid-cols-3 sm: gap-6 mt-6">
-                    <div className="h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >Bandung</div>
-                    <div className="h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >Jakarta</div>
-                    <div className="h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >Yogyakarta</div>
-                    <div className="h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >Surabaya</div>
-                    <div className="h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >Semarang</div>
-                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl" >See more >></div>
+                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer">Bandung</div>
+                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Jakarta</div>
+                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Yogyakarta</div>
+                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Surabaya</div>
+                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Semarang</div>
+                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >See more</div>
 
                 </div>
             </content>

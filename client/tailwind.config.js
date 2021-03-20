@@ -21,7 +21,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: theme => ({
-       'cat_bandung': `${process.env.PUBLIC_URL + '/cat_bandung.png'} `,
+       'cat_bandung': `${process.env.PUBLIC_URL + '/cat_bandung.png'}`,
        'cat_jakarta': `${process.env.PUBLIC_URL + '/cat_jakarta.png'} `,
        'cat_semarang': `${process.env.PUBLIC_URL + '/cat_semarang.png'} `,
        'cat_surabaya': `${process.env.PUBLIC_URL + '/cat_surabaya.png'} `,
