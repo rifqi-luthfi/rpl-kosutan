@@ -13,7 +13,20 @@ module.exports = {
         lightest: '#E8FFFF',
       },
       gray: colors.coolGray,
+      white: colors.white,
 
+    },
+    boxShadow: {
+      '3xl': '0 32px 240px -10px rgba(60, 148, 124, 10)',
+    },
+    extend: {
+      backgroundImage: theme => ({
+       'cat_bandung': `${process.env.PUBLIC_URL + '/cat_bandung.png'}`,
+       'cat_jakarta': `${process.env.PUBLIC_URL + '/cat_jakarta.png'} `,
+       'cat_semarang': `${process.env.PUBLIC_URL + '/cat_semarang.png'} `,
+       'cat_surabaya': `${process.env.PUBLIC_URL + '/cat_surabaya.png'} `,
+       'cat_yogyakarta': `${process.env.PUBLIC_URL + '/cat_yogyakarta.png'} `,
+      })
     }
   },
   fontFamily: {
