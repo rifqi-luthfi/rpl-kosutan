@@ -22,30 +22,30 @@ const Register = () => {
                         Discover your nearest Kost & Apartment
                     </h1>
                     <div className='flex-col flex-wrap'>
-                        <div className='flex flex-wrap mt-5 '>
-                            <div className="mr-5 text-sm">
-                                <label for="first-name" className="block text-black">First Name</label>
-                                <input type="text" autofocus id="first-name" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full border-green border-2 rounded-xl" placeholder="Username" />
+                        <div className='flex flex-wrap sm:flex-row lg:flex-row justify-between mt-5'>
+                            <div className="flex-auto  sm:mr-4 md:mr-4 lg:mr-0 xl:mr-4">
+                                <label for="first-name" className="block -mb-3 text-lg text-green-dark font-semibold  text-left">First Name</label>
+                                <input type="text" autofocus id="first-name" className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2" />
                             </div>
-                            <div className="text-sm">
-                                <label for="last-name" className="block text-black">Last Name</label>
-                                <input type="text" autofocus id="last-name" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full border-green border-2 rounded-xl" placeholder="Username" />
+                            <div className="flex-auto font-semibold mt-3 xs:mt-0 sm:mt-0 md:mt-0 lg:mt-0">
+                                <label for="last-name" className="block -mb-3 text-lg text-green-dark text-left">Last Name</label>
+                                <input type="text" autofocus id="last-name" className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2"  />
                             </div>
                         </div>
-                        <div className="mt-2 text-sm">
-                            <label for="email" className="block text-black">Email</label>
-                            <input type="email" autofocus id="email" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full border-green border-2 rounded-xl" placeholder="Username" />
+                        <div className="mt-3 font-semibold">
+                            <label for="email" className="block -mb-3 text-lg text-green-dark text-left">Email</label>
+                            <input type="email" autofocus id="email" className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2" />
                         </div>
-                        <div className="mt-2 text-sm">
-                            <label for="password" className="block text-black">Password</label>
-                            <input type="password" autofocus id="password" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full border-green border-2 rounded-xl" placeholder="Username" />
+                        <div className="mt-3 font-semibold">
+                            <label for="password" className="block -mb-3 text-lg text-green-dark text-left">Password</label>
+                            <input type="password" autofocus id="password" className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2" />
                         </div>
-                        <div className="mt-2 text-sm">
-                            <label for="confirm-password" className="block text-black">Confirm Password</label>
-                            <input type="password" autofocus id="confirm-password" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full border-green border-2 rounded-xl" placeholder="Username" />
+                        <div className="mt-3 font-semibold">
+                            <label for="confirm-password" className="block -mb-3 text-lg text-green-dark text-left">Confirm Password</label>
+                            <input type="password" autofocus id="confirm-password" className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2"/>
                         </div>
                     </div>
-                    <div className="flex mt-6 flex-col md:flex-row">
+                    <div className="flex mt-6 flex-col md:flex-row text-lg">
                     <Button type="primary" size="lg">Sign up</Button>
                     </div>
                 </div>
