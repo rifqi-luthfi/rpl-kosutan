@@ -1,8 +1,11 @@
 import React from 'react'
 import Button from '../components/Button'
+import Header from '../layout/Header'
 
 const Register = () => {
     return (
+        <>
+        <Header/>
         <div>
             <main className="container flex items-center justify-between mx-auto my-12 px-6 md:px-6 lg:px-0 lg:my-32">
                 <div className="hidden lg:block flex-shrink">
@@ -48,6 +51,7 @@ const Register = () => {
                 </div>
             </main>
         </div>
+        </>
     )
 }
 
