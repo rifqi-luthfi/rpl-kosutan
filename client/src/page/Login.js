@@ -11,12 +11,12 @@ const Login = () => {
                 <h1 className="font-medium text-2xl mt-3 text-center">Login</h1>
                 <form action="" className="mt-6">
                     <div className="my-5 text-sm">
-                        <label for="username" className="block text-black">Username</label>
-                        <input type="text" autofocus id="username" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full border-green border-2 rounded-xl" placeholder="Username" />
+                        <label for="username" className="block -mb-3 text-lg text-green-dark font-semibold  text-left">Username</label>
+                        <input type="text" autofocus id="username" className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2"/>
                     </div>
                     <div className="my-5 text-sm">
-                        <label for="password" className="block text-black">Password</label>
-                        <input type="password" id="password" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full border-green border-2 rounded-xl" placeholder="Password" />
+                        <label for="password" className="block -mb-3 text-lg text-green-dark font-semibold  text-left">Password</label>
+                        <input type="password" id="password" className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2"/>
                         <div className="flex justify-end mt-2 text-xs text-gray-600">
                             <a href="../../pages/auth/forget_password.html hover:text-black">Forget Password?</a>
                         </div>

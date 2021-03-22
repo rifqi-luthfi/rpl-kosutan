@@ -5,6 +5,12 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    container: {
+      center: true,
+      // screens: {
+      //   xs: "540px",
+      // },
+    },
     colors: {
       green: {
         dark: '#213E3B',
