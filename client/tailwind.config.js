@@ -1,6 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 
+
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
@@ -13,8 +14,10 @@ module.exports = {
     },
     colors: {
       green: {
+        darkest: '#1C2C2A',
         dark: '#213E3B',
         DEFAULT: '#41AEA9',
+        op_15: '#E3F3F2',
         light: '#A6F6F1',
         lightest: '#E8FFFF',
       },
@@ -27,11 +30,12 @@ module.exports = {
     },
     extend: {
       backgroundImage: theme => ({
-       'cat_bandung': `${process.env.PUBLIC_URL + '/cat_bandung.png'}`,
-       'cat_jakarta': `${process.env.PUBLIC_URL + '/cat_jakarta.png'} `,
-       'cat_semarang': `${process.env.PUBLIC_URL + '/cat_semarang.png'} `,
-       'cat_surabaya': `${process.env.PUBLIC_URL + '/cat_surabaya.png'} `,
-       'cat_yogyakarta': `${process.env.PUBLIC_URL + '/cat_yogyakarta.png'} `,
+       'cat_bandung': "url('./assets/images/cat_bandung.jpg')",
+       'cat_jakarta': "url('./assets/images/cat_jakarta.png')",
+       'cat_semarang': "url('./assets/images/cat_semarang.jpg')",
+       'cat_surabaya': "url('./assets/images/cat_surabaya.jpg')",
+       'cat_yogyakarta': "url('./assets/images/cat_yogyakarta.png')",
+       'hero_2': "url('./assets/images/hero2.jpg')",
       })
     }
   },
