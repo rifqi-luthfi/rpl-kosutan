@@ -1,15 +1,26 @@
 import React from 'react'
 import Button from '../components/Button'
 import Header from '../layout/Header'
+import { Link } from "react-router-dom";
+
 
 const Login = () => {
     return (
         <>
         <Header/>
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md rounded-3xl mt-24">
+        <div className="bg-white lg:w-3/12 md:6/12 w-10/12 m-auto my-10 shadow-md rounded-xl mt-24">
             <div className="py-8 px-8 rounded-xl">
-                <h1 className="font-medium text-2xl mt-3 text-center">Login</h1>
-                <form action="" className="mt-6">
+                <Link to="/home">
+                    <div className="flex items-center cursor-pointer">
+                        <img className="mr-2"alt="logo" src={process.env.PUBLIC_URL + '/logo_kosutan.png'} />
+                        <p className="font-sans text-green-dark text-4xl text font-bold tracking-tighter">Kosutan.</p>
+                    </div>
+                </Link>
+                <h1 className="text-green-dark text-2xl font-semibold mt-5">
+                Discover your nearest 
+                Kost & Apartment
+                </h1>
+                <form action="" className="">
                     <div className="my-5 text-sm">
                         <label for="username" className="block -mb-3 text-lg text-green-dark font-semibold  text-left">Username</label>
                         <input type="text" autofocus id="username" className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2"/>

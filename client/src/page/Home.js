@@ -1,12 +1,18 @@
 import React from 'react'
 import Button from '../components/Button'
 import Header from '../layout/Header'
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+
 
 const Home = () => {
+  
+    
     return (
         <>
             <Header />
-            <main className="container flex items-center justify-between mx-auto my-12 px-12 lg:px-0 md:px-6  lg:my-32">
+            <hero className="container flex items-center justify-between mx-auto my-12 px-12 lg:px-0 md:px-6  lg:my-32">
                 <div className="text-center lg:text-left lg:w-1/3 p-3">
                     <h1 className="text-green text-4xl font-bold tracking-tighter">
                         Kosutan.
@@ -29,24 +35,63 @@ const Home = () => {
                 <div className="hidden lg:block flex-shrink">
                     <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" alt="logo" src={process.env.PUBLIC_URL + '/hero.png'} />
                 </div>
-            </main>
-            <content className="container mx-auto flex flex-col px-6 my-12 md:px-6 lg:px-0 lg:my-32">
-                <h1 className="text-green-dark text-4xl font-bold tracking-tighter">
-                    Popular Kost Places
-                </h1>
-                <div className="grid grid-cols-2 md:grid-cols-3 sm: gap-6 mt-6">
+            </hero>
+            <div className="bg-green-op_15 py-20">
+                <content className="container mx-auto flex flex-col px-6 md:px-6 lg:px-0">
+                    <h1 className="text-green-dark text-4xl font-bold tracking-tighter mb-4">
+                        Popular Kost Places
+                    </h1>
+                    <h1 className="mb-8 font-medium text-lg text-green-dark">
+                        Temukan inspirasi dan ikut berbagi momen di Ruang #NyamannyaKamu
 
-                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer">Bandung</div>
-                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Jakarta</div>
-                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Yogyakarta</div>
-                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Surabaya</div>
-                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >Semarang</div>
-                    <div className="bg-green-dark h-32 flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >See more</div>
-
-                </div>
-            </content>
+                    </h1>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
+                        {
+                            places.map((val, i) => (
+                                <>
+                                <Link>
+                                    <div key={i} className={`relative bg-cat_${val} h-40 bg-cover bg-center flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer`}>
+                                        <span className="z-10 capitalize">{val}</span>
+                                        <div className="absolute bg-green-dark hover:opacity-80 transition duration-300 ease-in-out h-full w-full flex items-center justify-center opacity-60 rounded-2xl"></div>
+                                    </div>
+                                </Link>
+                                </>
+                            ))
+                        }
+                        <div className="bg-green-dark hover:bg-green-darkest transition duration-300 ease-in-out h-40 bg-cover bg-center flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >
+                            <span className="flex items-center gap-3">
+                                See more 
+                                <FontAwesomeIcon className="mt-1" icon={faAngleDoubleRight}/>
+                            </span>
+                        </div>
+                    </div>
+                </content>
+            </div>
+            <div className="bg-green-dark py-20">
+                <content className="container mx-auto flex px-6 md:px-6 lg:px-0">
+                    <div>
+                        <h1 className="text-white text-4xl font-bold tracking-tighter mb-4">
+                            Sewa sekarang besok tidur
+                        </h1>
+                        <h1 className="mb-8 font-medium text-lg text-white">
+                            Kami siap membantu untuk membangun mimpimu
+                        </h1>
+                        <Button type="inverse_secondary" size="lg">Mau sewa ah</Button>
+                    </div>
+                </content>
+            </div>
+        
         </>
     )
 }
 
 export default Home
+
+const places = [
+    "bandung", 
+    "jakarta",
+    "yogyakarta", 
+    "surabaya", 
+    "semarang" 
+]
+
