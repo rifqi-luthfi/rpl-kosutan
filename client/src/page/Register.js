@@ -1,8 +1,6 @@
 import React from 'react'
 import Button from '../components/Button'
 import Header from '../layout/Header'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
 
 const Register = () => {
     return (

@@ -51,7 +51,7 @@ const Header = () => {
                 </div>
 
 
-                <div id="drawer" className="fixed flex flex-col p-24 justify-evenly items-center left-full top-0 h-screen w-screen bg-gray-50 text-center transform transition-left duration-150 ease-in-out">
+                <div id="drawer" className="fixed z-20 flex flex-col p-24 justify-evenly items-center left-full top-0 h-screen w-screen bg-gray-50 text-center transform transition-left duration-150 ease-in-out">
                     <FontAwesomeIcon className="absolute top-4 right-8 cursor-pointer text-gray-300 hover:text-green text-4xl transition duration-150 ease-in-out" icon={faTimesCircle} onClick={handleHamburger}>
                         
                     </FontAwesomeIcon>
