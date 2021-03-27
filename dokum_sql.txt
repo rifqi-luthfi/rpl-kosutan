@@ -1,0 +1,85 @@
+-- CREATE TABLE --
+
+CREATE TABLE penyewa(
+    id_penyewa SERIAL PRIMARY KEY,
+    nama_awal VARCHAR(32),
+    nama_akhir VARCHAR(32),
+    email VARCHAR(64), 
+    password VARCHAR(64),
+    no_hp VARCHAR(16)
+);
+
+CREATE TABLE pemilik(
+    id_pemilik SERIAL PRIMARY KEY,
+    nama_awal VARCHAR(32),
+    nama_akhir VARCHAR(32),
+    email VARCHAR(64), 
+    password VARCHAR(64),
+    no_hp VARCHAR(16)
+);
+
+CREATE TABLE kost(
+    id_kost SERIAL PRIMARY KEY, 
+    id_pemilik SERIAL, 
+    nama_kost VARCHAR(64), 
+    alamat_kost VARCHAR(256), 
+    harga INT, 
+    jenis_kost VARCHAR(32),
+    deskripsi VARCHAR(512),
+
+    CONSTRAINT fk_pemilik 
+        FOREIGN KEY(id_pemilik)
+            REFERENCES pemilik(id_pemilik)
+    ON DELETE CASCADE
+);
+
+CREATE TABLE sewa(
+    id_sewa SERIAL PRIMARY KEY, 
+    id_kost SERIAL,
+    id_penyewa SERIAL,
+    tanggal_sewa DATE,
+    status VARCHAR(512), 
+
+    CONSTRAINT fk_kost
+        FOREIGN KEY(id_kost)
+            REFERENCES kost(id_kost),
+
+    CONSTRAINT fk_penyewa
+        FOREIGN KEY(id_penyewa)
+            REFERENCES penyewa(id_penyewa)
+
+);
+
+
+
+-- END CREATE TABLE --
+
+
+-- insert data ke pemilik
+INSERT INTO pemilik (
+	nama_awal, 
+	nama_akhir, 
+	email, 
+	password,
+	no_hp
+) VALUES ('Dimitri', 'Irfan', 'dimbumzzz@gmail.com', 'dimbum', '0812381223');
+
+-- insert data ke kost
+INSERT INTO kost (
+	id_pemilik, 
+	nama_kost, 
+	alamat_kost, 
+	harga, 
+	jenis_kost, 
+	deskripsi
+) VALUES (1, 'PESBAL', 'PESONA BALI B23', 1200000, 'putra', 'gaada')
+SELECT * FROM 
+
+-- insert data ke penyewa
+INSERT INTO penyewa (
+	nama_awal, 
+	nama_akhir, 
+	email, 
+	password,
+	no_hp
+) VALUES ('Rifqi', 'Luthfi', 'croyale@gmail.com', 'rifqi', '08122222');
