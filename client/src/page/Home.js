@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../components/Button'
+import Footer from '../layout/Footer'
 import Header from '../layout/Header'
 
 const Home = () => {
@@ -45,6 +46,7 @@ const Home = () => {
 
                 </div>
             </content>
+            <Footer />
         </>
     )
 }

@@ -20,6 +20,7 @@ const Header = () => {
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
                 </div>
+                
                 <div className="flex">
                     <Link to="/login">
                         <Button type='secondary' size="sm">Log in</Button>
