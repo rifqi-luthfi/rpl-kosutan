@@ -1,10 +1,10 @@
 import React from 'react'
-import {ButtonType, ButtonSize} from '../theme';
+import {ButtonVariant, ButtonSize} from '../theme';
 
 
-const Button = ({size, type, outline, children}) => {
+const Button = ({size, variant, outline, children}) => {
 
-    const classNames = ButtonType[type] + " " + ButtonSize[size]
+    const classNames = ButtonVariant[variant] + " " + ButtonSize[size]
 
     return (
         <button className={classNames}>
