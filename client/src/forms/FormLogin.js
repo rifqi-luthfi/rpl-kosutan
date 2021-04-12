@@ -24,7 +24,7 @@ const FormLogin = () => {
             }}
         >
             {({errors, touched}) => (
-                <Form action="" className="">
+                <Form className="">
                     <div className="my-5 text-sm font-semibold">
                         <label for="username" className="block -mb-3 text-lg text-green-dark font-semibold  text-left">Username</label>
                         <Field name="username" type="text" autofocus className="rounded-lg px-4 py-3 mt-3 focus:outline-none bg-gray-50 w-full border-green border-2"/>

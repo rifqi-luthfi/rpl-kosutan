@@ -5,6 +5,7 @@ import Header from '../layout/Header'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+import Alert from '../components/Alert';
 
 
 const Home = () => {
