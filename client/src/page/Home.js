@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../components/Button'
+import Footer from '../layout/Footer'
 import Header from '../layout/Header'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -68,20 +69,23 @@ const Home = () => {
                     </div>
                 </content>
             </div>
-            <div className="bg-green-dark py-20">
+            <div className="bg-green-lightest py-20">
                 <content className="container mx-auto flex px-6 md:px-6 lg:px-0">
+                    {/* <div>
+                        <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" alt="logo" src={process.env.PUBLIC_URL + '/hero.png'} />
+                    </div> */}
                     <div>
-                        <h1 className="text-white text-4xl font-bold tracking-tighter mb-4">
+                        <h1 className="text-green-dark text-4xl font-bold tracking-tighter mb-0">
                             Sewa sekarang besok tidur
                         </h1>
-                        <h1 className="mb-8 font-medium text-lg text-white">
+                        <h1 className="mb-4 font-normal text-lg text-green-dark">
                             Kami siap membantu untuk membangun mimpimu
                         </h1>
-                        <Button variant="inverse_secondary" size="lg">Mau sewa ah</Button>
+                        <Button variant="primary" size="lg">Sewa Kost ah</Button>
                     </div>
                 </content>
             </div>
-        
+        <Footer/>
         </>
     )
 }
