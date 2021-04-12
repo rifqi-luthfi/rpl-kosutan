@@ -11,3 +11,15 @@ export const ButtonSize = {
   lg: "py-3 px-6"
 }
 
+export const AlertVariant = {
+  success: [
+    "space-x-2 bg-green p-4 rounded flex items-center my-2 shadow-lg mx-auto",
+    "text-green-dark text-2xl transition duration-150 ease-in-out",
+    "cursor-pointer text-gray-100 hover:text-green-dark text-2xl transition duration-150 ease-in-out"
+  ],
+  danger: [
+    "space-x-2 bg-red-400 p-4 rounded flex items-center my-2 shadow-lg mx-auto",
+    "text-gray-100 text-2xl transition duration-150 ease-in-out",
+    "cursor-pointer text-gray-100 hover:text-red-900 text-2xl transition duration-150 ease-in-out"
+  ]
+}

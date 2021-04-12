@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../layout/Header'
 import FormRegister from '../forms/FormRegister'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
+import Alert from '../components/Alert'
 
 
 const Register = () => {
+
+ 
+
     return (
         <>
         <Header/>
@@ -37,9 +41,7 @@ const Register = () => {
                 </div>
 
                 <p className="mt-12 text-xs text-center font-light text-gray-400"> Already have an account? <a href="../auth/register.html" className="text-black font-medium"> Login with One </a> </p> 
-                
-                    
-                
+            
             </div>
         </main>
         </>
