@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="mx-auto font-medium px-24 py-16 bg-green-dark relative ">
             <div className="sm:flex sm:mt-8 lg:mt-0">
                 <div className="mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between">
-                    <div className="flex items-center mr-56">
+                    <div className="flex items-center sm:mr-0 bg:mr-56">
                         <img className="mr-4"alt="logo" src={process.env.PUBLIC_URL + '/logo_kosutan.png'} />
                         <p className="font-sans text-green-lightest text-2xl text font-bold tracking-tighter">Kosutan.</p>
                     </div>
