@@ -42,11 +42,11 @@ const Header = () => {
                 </div>
                 <div className="hidden lg:flex">
                     <Link to="/login">
-                        <Button type='secondary' size="sm">Log in</Button>
+                        <Button variant='secondary' size="sm">Log in</Button>
                     </Link>
                     <span className="p-1"></span>
                     <Link to="/register">
-                        <Button type='primary' size="sm">Sign up</Button>
+                        <Button variant='primary' size="sm">Sign up</Button>
                     </Link>
                 </div>
 
@@ -59,10 +59,10 @@ const Header = () => {
                     <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
                     <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
                     <Link onClick={handleHamburger} to="/login">
-                        <Button type='secondary' size="lg">Log in</Button>
+                        <Button variant='secondary' size="lg">Log in</Button>
                     </Link>
                     <Link onClick={handleHamburger} to="/register">
-                        <Button type='primary' size="lg">Sign up</Button>
+                        <Button variant='primary' size="lg">Sign up</Button>
                     </Link>
                 </div>
 

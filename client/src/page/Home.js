@@ -27,9 +27,9 @@ const Home = () => {
                         Kosutan is a platform that makes kost booking process  a lot easier. through our platform, Kost Renter and Kost Seeker can be easily connected. Let’s get started!
                     </h1>
                     <div className="flex mt-6 flex-col md:flex-row">
-                        <Button type="primary" size="lg">Get Started</Button>
+                        <Button variant="primary" size="lg">Get Started</Button>
                         <span className="p-1"></span>
-                        <Button type="outlined" size="lg">How They Work</Button>    
+                        <Button variant="outlined" size="lg">How They Work</Button>    
                     </div>
                 </div>
                 <div className="hidden lg:block flex-shrink">
@@ -76,7 +76,7 @@ const Home = () => {
                         <h1 className="mb-8 font-medium text-lg text-white">
                             Kami siap membantu untuk membangun mimpimu
                         </h1>
-                        <Button type="inverse_secondary" size="lg">Mau sewa ah</Button>
+                        <Button variant="inverse_secondary" size="lg">Mau sewa ah</Button>
                     </div>
                 </content>
             </div>
