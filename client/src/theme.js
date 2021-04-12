@@ -1,6 +1,7 @@
-export const ButtonType = {
+export const ButtonVariant = {
     primary: "focus:outline-none bg-green text-white font-semibold rounded-md hover:bg-green-dark transition duration-300 ease-in-out flex-auto",
     secondary: "focus:outline-none bg-white text-green-dark font-semibold rounded-md hover:bg-gray-100 transition duration-300 ease-in-out flex-auto",
+    inverse_secondary: "focus:outline-none bg-white text-green-dark font-semibold rounded-md hover:bg-green hover:text-white transition duration-300 ease-in-out flex-auto",
     outlined: "focus:outline-none bg-white border-green border-2 text-green-dark font-semibold rounded-md hover:bg-green-dark hover:text-white hover:border-green-dark transition duration-300 ease-in-out flex-auto",
 
 };

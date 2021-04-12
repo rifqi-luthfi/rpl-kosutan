@@ -4,10 +4,10 @@ import Button from '../components/Button';
 
 const Footer = () => {
     return(
-        <div className="mx-auto px-24 py-6 bg-green-dark relative ">
-            <div className="sm:flex sm:mt-8">
+        <div className="mx-auto font-medium px-24 py-16 bg-green-dark relative ">
+            <div className="sm:flex sm:mt-8 lg:mt-0">
                 <div className="mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between">
-                    <div className="flex items-center mr-32">
+                    <div className="flex items-center mr-56">
                         <img className="mr-4"alt="logo" src={process.env.PUBLIC_URL + '/logo_kosutan.png'} />
                         <p className="font-sans text-green-lightest text-2xl text font-bold tracking-tighter">Kosutan.</p>
                     </div>
