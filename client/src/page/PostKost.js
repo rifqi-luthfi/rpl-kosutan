@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '../components/Button'
 import Header from '../layout/Header'
 import { Link } from "react-router-dom";
-import FormLogin from '../forms/FormLogin';
+import FormPostKost from '../forms/FormPostKost';
 
 
 const PostKost = () => {
@@ -22,20 +22,7 @@ const PostKost = () => {
                     Tambahkan kost-an mu
                     </h1>
                     
-                    <FormLogin />
-
-                    <div className="flex md:justify-between justify-center items-center mt-10">
-                        <div className="bg-gray-300 md:block hidden w-4/12 h-1"></div>
-                        <p className="md:mx-2 text-sm text-gray-400"> Login With Social </p> 
-                        <div className="bg-gray-300 md:block hidden w-4/12 h-1"></div>
-                    </div>
-
-                    <div className='flex mt-7'>
-                        <Button className="" variant="outlined" size="lg">Google</Button>
-                    </div>
-
-                    <p className="mt-12 text-xs text-center font-light text-gray-400"> Don't have an account? <a href="../auth/register.html" className="text-black font-medium"> Create One </a>  </p> 
-
+                    <FormPostKost />
                 </div>
             </div>
         </div>
