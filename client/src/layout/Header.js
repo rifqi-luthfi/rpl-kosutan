@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import Button from '../components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle, faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const Header = () => {
 
@@ -20,6 +20,7 @@ const Header = () => {
             drawer.add('left-full')
         }
     }
+    
 
 
     return (
@@ -40,6 +41,10 @@ const Header = () => {
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
                 </div>
+                <div class="relative border-2 border-gray-300 rounded-md mx-8"> 
+                    <input type="text" class="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Cari Kost Terbaik Anda..."/>
+                    <div class="absolute top-4 right-3">  <Button><FontAwesomeIcon icon={faSearch} className="text-gray-400 z-20 hover:text-gray-500"/></Button> </div>
+                </div>
                 <div className="hidden lg:flex">
                     <Link to="/login">
                         <Button variant='secondary' size="sm">Log in</Button>
@@ -49,7 +54,6 @@ const Header = () => {
                         <Button variant='primary' size="sm">Sign up</Button>
                     </Link>
                 </div>
-
 
                 <div id="drawer" className="fixed z-20 flex flex-col p-24 justify-evenly items-center left-full top-0 h-screen w-screen bg-gray-50 text-center transform transition-left duration-150 ease-in-out">
                     <FontAwesomeIcon className="absolute top-4 right-8 cursor-pointer text-gray-300 hover:text-green text-4xl transition duration-150 ease-in-out" icon={faTimesCircle} onClick={handleHamburger}>

@@ -1,0 +1,93 @@
+button{
+    display: flex;
+    flex: column;
+    align-items: center;
+    position: relative;
+    text-align: right;
+}
+button:focus{
+    outline:none;
+}
+button img{
+    height: 40px;
+    margin: 0 10px;
+}
+
+button span{
+    font-size: 12px;
+}
+
+.DropDown{
+    display: none;
+    position: absolute;
+    top: 69px;
+    right: 32px;
+    background: #fff;
+    padding: 15px 56px;
+    border-radius: 5px;
+    
+}
+
+.DropDown::before{
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.DropDown .icon{
+    margin-right: 10px;
+}
+
+.DropDown.active{
+    display: block;
+}    
+/* .profileNavbar ul li a{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    text-align: right;
+    position: relative;
+}
+
+.profileNavbar ul li a img{
+    width: 40px;
+    margin: 0 10px;
+}
+
+.profileNavbar ul li a span{
+    font-size: 15px;
+}
+
+.profileNavbar ul li .dropdown{
+    display: none;
+    position: absolute;
+    top: 72px;
+    right: 72px;
+    background: #d8e3e7;
+    padding: 10px 25px;
+    border-radius: 5px;
+    
+}
+
+.profileNavbar ul li .dropdown .icon{
+    margin-right: 10px;
+
+}
+
+.profileNavbar ul li .dropdown::before{
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid;
+    border-color: transparent transparent #d8e3e7 transparent;
+}
+
+.profileNavbar ul li.active .dropdown{
+    display: block;
+} */
