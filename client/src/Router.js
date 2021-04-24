@@ -8,6 +8,7 @@ import DetailKost from './page/DetailKost';
 import Home from './page/Home';
 import Login from './page/Login';
 import Register from './page/Register';
+import PostKost from './page/PostKost';
 
 const Router = () => {
     return (
@@ -27,6 +28,9 @@ const Router = () => {
                 </Route>
                 <Route path='/detail/:id'>
                     <DetailKost />
+                </Route>
+                <Route path='/postkost'>
+                    <PostKost />
                 </Route>
             </Switch>
         </RouterComp>
