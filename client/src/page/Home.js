@@ -14,7 +14,7 @@ const Home = () => {
     
     return (
         <>
-            <HeaderLogin/>
+            <Header/>
             <hero className="container flex items-center justify-between mx-auto my-12 px-12 lg:px-0 md:px-6  lg:my-32">
                 <div className="text-center lg:text-left lg:w-1/3 p-3">
                     <h1 className="text-green text-4xl font-bold tracking-tighter">

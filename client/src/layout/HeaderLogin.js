@@ -24,11 +24,7 @@ const HeaderLogin = () => {
     }
 
     const handleDropdown = () => {
-        const trigger = document.querySelector('.showPrf');
-        const dropdown = document.querySelector('.DropDown')
-        trigger.addEventListener('click', function(){
-            dropdown.classList.toggle('active')
-        })
+       alert("yo")
     }
 
 
@@ -50,16 +46,23 @@ const HeaderLogin = () => {
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
                 </div>
-                <div className='Profile' >
-                    <div onClick={handleDropdown} className='showPrf'>
-                        <Button >
-                            <div className='flex-col mr-2'>
-                                <p className='text-green-dark font-semibold'>Rifqi Luthfi </p>
-                                <p className='text-gray-500 text-sm -mt-1 '>Penyewa</p>
-                            </div>
-                            <img src={me} alt='Admin Image'/>
-                            <FontAwesomeIcon icon={faAngleDown}/>
-                        </Button>
+
+                <div id="drawer" className="fixed z-20 flex flex-col p-24 justify-evenly items-center left-full top-0 h-screen w-screen bg-gray-50 text-center transform transition-left duration-150 ease-in-out">
+                    <FontAwesomeIcon className="absolute top-4 right-8 cursor-pointer text-gray-300 hover:text-green text-4xl transition duration-150 ease-in-out" icon={faTimesCircle} onClick={handleHamburger}>
+                        
+                    </FontAwesomeIcon>
+                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/home">Home</Link>
+                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
+                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
+                </div>
+                <div className=''>
+                    <div className='flex items-center cursor-pointer' onClick={handleDropdown}>
+                        <div className='mr-3'>
+                            <p className='text-green-dark font-semibold'>Dimitri Irfan </p>
+                            <p className='text-gray-500 text-sm -mt-1 '>Penyewa</p>
+                        </div>
+                        <img className="h-10 mr-3" src={me} alt='Admin Image'/>
+                        <FontAwesomeIcon icon={faAngleDown}/>
                     </div>
                     <div className='DropDown'>
                         <ul>

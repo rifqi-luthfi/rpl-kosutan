@@ -1,20 +1,20 @@
 button{
-    display: flex;
+    /* display: flex;
     flex: column;
     align-items: center;
     position: relative;
-    text-align: right;
+    text-align: right; */
 }
 button:focus{
-    outline:none;
+    /* outline:none; */
 }
 button img{
-    height: 40px;
-    margin: 0 10px;
+    /* height: 40px;
+    margin: 0 10px; */
 }
 
 button span{
-    font-size: 12px;
+    /* font-size: 12px; */
 }
 
 .DropDown{
