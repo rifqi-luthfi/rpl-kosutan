@@ -21,10 +21,8 @@ const Header = () => {
         }
     }
     
-
-
     return (
-        <div className="shadow-3xl">
+        <div className="fixed top-0 w-full shadow-3xl bg-white z-20">
             <nav className="container mx-auto flex items-center justify-between flex-wrap p-4 ">
                 <Link to="/home">
                     <div className="flex items-center mr-32 cursor-pointer">
@@ -39,7 +37,8 @@ const Header = () => {
                 <div className="hidden w-full flex-grow lg:flex items-center lg:w-auto">
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/home">Home</Link>
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
-                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
+                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
+                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 font-semibold text-light-gray transition duration-300 ease-in-out" to="/kostlist">Kosts</Link>
                 </div>
                 <div class="relative border-2 border-gray-300 rounded-md mx-8"> 
                     <input type="text" class="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Cari Kost Terbaik Anda..."/>
@@ -62,6 +61,7 @@ const Header = () => {
                     <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/home">Home</Link>
                     <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
                     <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
+                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/kostlist">About</Link>
                     <Link onClick={handleHamburger} to="/login">
                         <Button variant='secondary' size="lg">Log in</Button>
                     </Link>

@@ -1,17 +1,17 @@
 CREATE TABLE promo(
-    id_promo SERIAL PRIMARY KEY,
+    id_promo INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     gambar VARCHAR(128),
     poster VARCHAR(128)
 );
 
 CREATE TABLE bank(
-    id_bank SERIAL PRIMARY KEY,
+    id_bank INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nama_bank VARCHAR(64)
 );
 
 CREATE TABLE rekening(
-    id_rekening SERIAL PRIMARY KEY, 
-    id_bank SERIAL, 
+    id_rekening INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+    id_bank INT, 
     no_rek VARCHAR(64),
 
     CONSTRAINT fk_bank
@@ -20,14 +20,14 @@ CREATE TABLE rekening(
 );
 
 CREATE TABLE admin(
-    id_admin SERIAL PRIMARY KEY, 
+    id_admin INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     email VARCHAR(64), 
     password VARCHAR(64)
 
 );
 
 CREATE TABLE penyewa(
-    id_penyewa SERIAL PRIMARY KEY,
+    id_penyewa INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nama_awal VARCHAR(32),
     nama_akhir VARCHAR(32),
     email VARCHAR(64), 
@@ -36,8 +36,8 @@ CREATE TABLE penyewa(
 );
 
 CREATE TABLE pemilik(
-    id_pemilik SERIAL PRIMARY KEY,
-    id_rekening SERIAL, 
+    id_pemilik INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_rekening INT, 
     nama_awal VARCHAR(32),
     nama_akhir VARCHAR(32),
     email VARCHAR(64), 
@@ -52,20 +52,21 @@ CREATE TABLE pemilik(
 );
 
 CREATE TABLE kota(
-    id_kota SERIAL PRIMARY KEY, 
+    id_kota INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     nama_kota VARCHAR(64),
     provinsi VARCHAR(64)
 );
 
 CREATE TABLE kost(
-    id_kost SERIAL PRIMARY KEY, 
-    id_pemilik SERIAL, 
-    id_kota SERIAL,
+    id_kost INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+    id_pemilik INT, 
+    id_kota INT,
     nama_kost VARCHAR(64), 
     alamat_kost VARCHAR(256), 
     harga INT, 
     jenis_kost VARCHAR(32),
     deskripsi VARCHAR(512),
+    img VARCHAR(256),
 
     CONSTRAINT fk_pemilik 
         FOREIGN KEY(id_pemilik)
@@ -80,7 +81,7 @@ CREATE TABLE kost(
 
 
 CREATE TABLE pembayaran(
-    id_pembayaran SERIAL PRIMARY KEY, 
+    id_pembayaran INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     id_rekening SERIAL,
     tanggal_trf date,
     total_pembayaran INT, 
@@ -92,10 +93,10 @@ CREATE TABLE pembayaran(
 );
 
 CREATE TABLE sewa(
-    id_sewa SERIAL PRIMARY KEY, 
-    id_kost SERIAL,
-    id_penyewa SERIAL, 
-    id_pembayaran SERIAL,
+    id_sewa INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+    id_kost INT,
+    id_penyewa INT, 
+    id_pembayaran INT,
     tanggal_sewa DATE,
     status VARCHAR(32), 
 

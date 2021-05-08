@@ -12,7 +12,6 @@ const dataKost = {
 const DetailKost = () => {
     return (
         <>
-            <Header />
             <div className="container flex flex-wrap justify-between md:flex-nowrap mx-auto my-12 px-12 lg:px-0 md:px-6 lg:my-32">
                 <img className="w-full mb-6 mr-6 " alt="logo" src={process.env.PUBLIC_URL + '/detail_1.png'} />
                 <div className=" mb-6 mr-6">

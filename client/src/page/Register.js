@@ -1,18 +1,12 @@
-import React, { useState } from 'react'
-import Header from '../layout/Header'
+import React from 'react'
 import FormRegister from '../forms/FormRegister'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
-import Alert from '../components/Alert'
 
 
 const Register = () => {
-
- 
-
     return (
         <>
-        <Header/>
         <main className="container flex items-center justify-center m-auto my-12 px-6 md:px-6 lg:px-0 mt-24">
             <div className="bg-white text-center lg:text-left lg:w-5/12 w-10/12 rounded-xl py-8 px-8">
                 <Link to="/home">

@@ -19,6 +19,7 @@ app.listen(PORT, () => {
 })
 
 app.use("/penyewa", require("./routes/penyewa"))
+app.use("/kost", require("./routes/kost"))
 
 
 

@@ -120,27 +120,36 @@ const isTokenValid = async (req, res) => {
 const getUserLoggedIn = async (req, res) => {
     try {
         const id = req.userId;
-        console.log(id)
-        // if (!id) {
-        //     return res.status(400).json({ msg: "User ID is not exist" });
-        // }
+        if (!id) {
+            return res.status(400).json({ msg: "User ID is not exist" });
+        }
     
-        // const user = await User.findOne({ _id: id });
-        // if (!user) {
-        //     return res.status(400).json({ msg: "User account not found" });
-        // }
+        const user = await pool.query("SELECT * FROM PENYEWA WHERE id_penyewa = $1 LIMIT 1", [id])
+        if (user.rows.length == 0 || user.rows === undefined) {
+            return res.status(400).json({ msg: "User account not found" });
+        }
     
-        // res.json({
-        //     id: user._id,
-        //     role: user.role,
-        //     username: user.username,
-        //     email: user.email,
-        //     name: user.name,
-        // });
+        res.json({
+            id: user.rows[0].id_penyewa,
+            email: user.rows[0].email,
+            nama_awal: user.rows[0].nama_awal,
+            nama_akhir: user.rows[0].nama_akhir,
+        });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
+}
 
+const endSession = async (req, res) => {
+    try {
+        res.cookie(
+            "token", "", {
+                expires: new Date(1)
+            }
+        ).send(true)
+    } catch (error) {
+        return res.status(500).json({ error: err.message });
+    }
 }
 
 module.exports = {
@@ -148,5 +157,6 @@ module.exports = {
     registerUser,
     loginUser,
     isTokenValid,
-    getUserLoggedIn
+    getUserLoggedIn,
+    endSession
 }

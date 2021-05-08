@@ -12,7 +12,7 @@ const penyewaAuth = (req, res, next) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET_PENYEWA);
 
     // if it is add userId to request
-    req.userId = verified.id_penyewa;
+    req.userId = verified.id;
 
     // send
     next();
