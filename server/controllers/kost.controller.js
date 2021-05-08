@@ -15,4 +15,3 @@ const getAllKost = async (req, res) => {
 }
 module.exports = {
     getAllKost
-}

@@ -13,6 +13,7 @@ import Home from './page/Home';
 import KostList from './page/KostList';
 import Login from './page/Login';
 import Register from './page/Register';
+import PostKost from './page/PostKost';
 
 const LoggedInRoute = ({ children, ...rest }) => {
     const { isUserLoggedIn } = useContext(GlobalContext);
@@ -86,6 +87,7 @@ const Router = () => {
                     <Register />
                 </NotLoggedInRoute>
         
+
 
             </Switch>
         </RouterComp>
