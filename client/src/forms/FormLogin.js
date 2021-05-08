@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Button from '../components/Button'
 
 import { Formik, Form, Field } from 'formik'
@@ -7,6 +7,7 @@ import FieldError from '../components/FieldError'
 
 import axios from 'axios'
 import Alert from '../components/Alert'
+import { GlobalContext } from '../context/GlobalContext'
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string().required('Email is name required'),
@@ -18,6 +19,7 @@ const FormLogin = () => {
     const [open, setOpen] = useState(false)
     const [error, setError] = useState("")
     const [openDanger, setOpenDanger] = useState(false)
+    const { checkUserLoggedIn } = useContext(GlobalContext);
 
     const handleOpen = () => {
         setOpen(true)
@@ -52,6 +54,7 @@ const FormLogin = () => {
                         const response = await axios.post("/penyewa/login", user)
                         if (response.status === 200) {
                             handleOpen()
+                            await checkUserLoggedIn()
                             setTimeout(() => {
                                 handleClose()
                             }, 2500);
