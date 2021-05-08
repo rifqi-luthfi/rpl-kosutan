@@ -7,9 +7,12 @@ import React, { useEffect } from 'react'
 
 const Alert = ({name, variant, open, handleClose, children}) => {
     
-    
+    let icon = faCheckCircle
     if (variant === "success") {
-        const icon = faCheckCircle
+        icon = faCheckCircle
+    } 
+    else if (variant === "danger") {
+        icon = faExclamationCircle
     }
     
     const handleOpen = () => {
@@ -34,9 +37,7 @@ const Alert = ({name, variant, open, handleClose, children}) => {
             <div id={name} className="fixed z-10 -bottom-full left-4 transition-all duration-500 ease-in-out ">
                 <div class={AlertVariant[variant][0]}>
                     <div class="align-center mt-2 ">
-                        <FontAwesomeIcon className={AlertVariant[variant][1]} icon={
-                            variant === "success" ? faCheckCircle : faExclamationCircle
-                        }/>
+                        <FontAwesomeIcon className={AlertVariant[variant][1]} icon={icon}/>
                     </div>
                     <h3 class="text-white tracking-wider flex-1 text-md">
                         {children}  

@@ -1,14 +1,22 @@
 import React from 'react'
 import Button from '../components/Button'
-import Header from '../layout/Header'
 import { Link } from "react-router-dom";
 import FormLogin from '../forms/FormLogin';
+import { GoogleLogin } from "react-google-login"
 
 
 const Login = () => {
+
+    const onSuccess = (res) => {
+        console.log(res.profileObj)
+    }
+
+    const onFailure = (res) => {
+        console.log(res)
+    }
+
     return (
         <>
-        <Header/>
         <div className="container">
             <div className="bg-white lg:w-5/12  w-10/12 m-auto my-10 shadow-md rounded-xl mt-24">
                 <div className="py-8 px-8 rounded-xl">
@@ -31,11 +39,24 @@ const Login = () => {
                         <div className="bg-gray-300 md:block hidden w-4/12 h-1"></div>
                     </div>
 
-                    <div className='flex mt-7'>
-                        <Button className="" variant="outlined" size="lg">Google</Button>
-                    </div>
+                        <GoogleLogin 
+                            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                            buttonText="Login"
+                            component={Button}
+                            onSuccess={onSuccess}
+                            onFailure={onFailure}
+                            cookiePolicy={'single_host_origin'}
+                            isSignedIn={true}
+                            render={renderProps => (
+                                <div className="flex mt-7" onClick={renderProps.onClick}>
+                                    <Button variant="outlined" size="lg">Google</Button>
+                                </div>
+                            )}
+                        />
 
-                    <p className="mt-12 text-xs text-center font-light text-gray-400"> Don't have an account? <a href="../auth/register.html" className="text-black font-medium"> Create One </a>  </p> 
+                    
+
+                    <p className="mt-12 text-xs text-center font-light text-gray-400"> Are you Kost owner? <a href="../auth/register.html" className="text-gray-500 hover:text-green-darkest hover:font-bold font-medium"> Create One </a>  </p> 
 
                 </div>
             </div>

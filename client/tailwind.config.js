@@ -23,7 +23,7 @@ module.exports = {
       },
       gray: colors.coolGray,
       white: colors.white,
-      red: colors.red
+      red: colors.red,
 
     },
     boxShadow: {

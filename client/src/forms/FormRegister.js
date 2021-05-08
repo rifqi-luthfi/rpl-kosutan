@@ -78,11 +78,17 @@ const FormRegister = () => {
                         } else {
                             setError(error.response.data.msg)
                             handleOpenDanger()
+                            setTimeout(() => {
+                                handleCloseDanger()
+                            }, 2500);
                         }
                     } catch (error) {
                         console.log(error.response.data.msg)
                         setError(error.response.data.msg)
                         handleOpenDanger()
+                        setTimeout(() => {
+                            handleCloseDanger()
+                        }, 2500)
                     }
                 }}
             >
