@@ -1,5 +1,6 @@
 const Pool = require("pg").Pool 
 
+// connect database dengan setting berikut
 const pool = new Pool({
     user: process.env.DB_USER, 
     password: process.env.DB_PASSWORD, 
