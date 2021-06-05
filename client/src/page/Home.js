@@ -1,17 +1,12 @@
 import React from 'react'
 import Button from '../components/Button'
 import Footer from '../layout/Footer'
-import Header from '../layout/Header'
-import HeaderLogin from '../layout/HeaderLogin'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
-import Alert from '../components/Alert';
-
 
 const Home = () => {
-  
-    
+
     return (
         <>
             <hero className="container flex items-center justify-between mx-auto my-12 px-12 lg:px-0 md:px-6  lg:my-32">
@@ -51,8 +46,8 @@ const Home = () => {
                         {
                             places.map((val, i) => (
                                 <>
-                                <Link>
-                                    <div key={i} className={`relative bg-cat_${val} h-40 bg-cover bg-center flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer`}>
+                                <Link to={`/kostlist/${val}`}>
+                                    <div className={`relative bg-cat_${val} h-40 bg-cover bg-center flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer`}>
                                         <span className="z-10 capitalize">{val}</span>
                                         <div className="absolute bg-green-dark hover:opacity-80 transition duration-300 ease-in-out h-full w-full flex items-center justify-center opacity-60 rounded-2xl"></div>
                                     </div>
@@ -94,7 +89,7 @@ export default Home
 
 const places = [
     "bandung", 
-    "jakarta",
+    "jakarta selatan",
     "yogyakarta", 
     "surabaya", 
     "semarang" 

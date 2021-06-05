@@ -1,17 +1,19 @@
 const jwt = require("jsonwebtoken");
 
 const penyewaAuth = (req, res, next) => {
+  // middleware, digunakan untuk mengetahui apakan token di cookie valid 
+
   try {
-    // get token from cookies
+    // ambil token di cookie
     const token = req.cookies.token;
 
-    // if theres no token, unathorized
+    // jika tidak ada token maka bukan user authorized
     if (!token) res.status(401).json({ msg: "Unauthorized" });
 
-    // check if token is valid (not tampered)
+    // cek apakah token valid
     const verified = jwt.verify(token, process.env.JWT_SECRET_PENYEWA);
 
-    // if it is add userId to request
+    // jika token valid, attach userId ke request body
     req.userId = verified.id;
 
     // send

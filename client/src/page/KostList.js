@@ -2,18 +2,31 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import KostCard from '../components/KostCard'
 import Footer from '../layout/Footer';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const KostList = () => {
     const [kosts, setKosts] = useState([{}])
+    const { city } = useParams()
 
     const fetchKostData = async () => {
         const kostsResponse = await axios.get("/kost/getAllKost")
         setKosts(kostsResponse.data)
     }
 
+    const fetchKostDataByCity = async () => {
+        const kostsResponse = await axios.get("/kost/getKostByCity", {
+            params: {
+                city: city
+            }
+        })
+        setKosts(kostsResponse.data)
+    }
+
     useEffect(() => {
-        fetchKostData() // eslint-disable-line react-hooks/exhaustive-deps
-    }, []);
+        if (city) fetchKostDataByCity()
+        else fetchKostData() 
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <>
@@ -29,7 +42,7 @@ const KostList = () => {
                         <div className="flex-grow grid grid-cols-1 gap-3 lg:grid-cols-4 md:grid-cols-2">
                             {
                                 kosts.map((data, i) => {
-                                    return <KostCard key={i} data={data}></KostCard>
+                                    return <Link to={`kosts/${data.id_kost}`}><KostCard key={i} data={data}></KostCard></Link> 
                                 })  
                             }
                         </div>
