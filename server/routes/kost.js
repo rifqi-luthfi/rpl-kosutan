@@ -13,5 +13,4 @@ router.get("/getKostByCity", getKostByCity)
 router.get("/getKostById", getKostById)
 
 
-
 module.exports = router

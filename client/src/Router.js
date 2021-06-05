@@ -14,6 +14,7 @@ import Login from './page/Login';
 import Register from './page/Register';
 import DetailKost from './page/DetailKost';
 import Footer from './layout/Footer';
+import PostKost from './page/PostKost';
 
 const LoggedInRoute = ({ children, ...rest }) => {
     // protected route, digunakan untuk component yang hanya dapat 
@@ -95,7 +96,7 @@ const Router = () => {
                     <Header/>
                     <DetailKost/>
                 </Route>
-
+            
                 <NotLoggedInRoute exact path='/login'>
                     <Header/>
                     <Login />
