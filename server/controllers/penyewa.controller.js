@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 
 const getAllUsers = async (req, res) => {
     const response = await pool.query("SELECT * FROM penyewa")
-    console.log(response.rows)
     res.send("test")
 }
 

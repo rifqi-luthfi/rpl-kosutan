@@ -29,7 +29,7 @@ const getKostByCity = async (req, res) => {
 const getKostById = async (req, res) => {
     try {
         let { id } = req.query
-        const response = await pool.query("SELECT * FROM kost INNER JOIN kota ON kost.id_kota=kota.id_kota WHERE id_kost = $1 LIMIT 1", [id])
+        const response = await pool.query("SELECT * FROM kost INNER JOIN kota ON kost.id_kota=kota.id_kota INNER JOIN pemilik ON pemilik.id_pemilik = kost.id_pemilik WHERE id_kost = $1 LIMIT 1", [id])
         res.send(response.rows[0])
     } catch (error) {
         return res.status(500).json({ msg: error })

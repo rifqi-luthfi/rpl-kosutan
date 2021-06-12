@@ -9,14 +9,29 @@ CREATE TABLE bank(
     nama_bank VARCHAR(64)
 );
 
+CREATE TABLE pemilik(
+    id_pemilik INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nama_awal VARCHAR(32),
+    nama_akhir VARCHAR(32),
+    email VARCHAR(64), 
+    password VARCHAR(64),
+    no_hp VARCHAR(16)
+    
+);
 CREATE TABLE rekening(
-    id_rekening INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+    id_rekening INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_pemilik INT,
     id_bank INT, 
     no_rek VARCHAR(64),
 
     CONSTRAINT fk_bank
         FOREIGN KEY (id_bank)
-            REFERENCES bank(id_bank)
+            REFERENCES bank(id_bank),
+
+    CONSTRAINT fk_pemilik
+        FOREIGN KEY (id_pemilik)
+            REFERENCES pemilik(id_pemilik)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE admin(
@@ -35,21 +50,6 @@ CREATE TABLE penyewa(
     no_hp VARCHAR(16)
 );
 
-CREATE TABLE pemilik(
-    id_pemilik INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    id_rekening INT, 
-    nama_awal VARCHAR(32),
-    nama_akhir VARCHAR(32),
-    email VARCHAR(64), 
-    password VARCHAR(64),
-    no_hp VARCHAR(16),
-
-    CONSTRAINT fk_rekening
-        FOREIGN KEY (id_rekening)
-            REFERENCES rekening(id_rekening)
-	ON DELETE CASCADE
-
-);
 
 CREATE TABLE kota(
     id_kota INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
@@ -82,6 +82,8 @@ CREATE TABLE kost(
 
 CREATE TABLE pembayaran(
     id_pembayaran INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+    id_penyewa INT,
+    id_kost INT,
     id_rekening SERIAL,
     tanggal_trf date,
     total_pembayaran INT, 
@@ -89,7 +91,15 @@ CREATE TABLE pembayaran(
 
     CONSTRAINT fk_rekening2
         FOREIGN KEY (id_rekening)
-            REFERENCES rekening(id_rekening)
+            REFERENCES rekening(id_rekening),
+
+    CONSTRAINT fk_penyewa2
+        FOREIGN KEY (id_penyewa)
+            REFERENCES penyewa(id_penyewa),
+
+    CONSTRAINT fk_kost
+        FOREIGN KEY (id_kost)
+            REFERENCES kost(id_kost)
 );
 
 CREATE TABLE sewa(

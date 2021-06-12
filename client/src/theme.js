@@ -3,7 +3,7 @@ export const ButtonVariant = {
     secondary: "focus:outline-none bg-white text-green-dark font-semibold rounded-md hover:bg-gray-100 transition duration-300 ease-in-out flex-auto",
     inverse_secondary: "focus:outline-none bg-white text-green-dark font-semibold rounded-md hover:bg-green hover:text-white transition duration-300 ease-in-out flex-auto",
     outlined: "focus:outline-none bg-white border-green border-2 text-green-dark font-semibold rounded-md hover:bg-green-dark hover:text-white hover:border-green-dark transition duration-300 ease-in-out flex-auto",
-
+    disabled: "focus:outline-none bg-gray-200 text-gray-400 font-semibold rounded-md transition cursor-default flex-auto"
 };
 
 export const ButtonSize = {

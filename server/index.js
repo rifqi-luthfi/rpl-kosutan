@@ -25,6 +25,9 @@ app.listen(PORT, () => {
 // connect backend route
 app.use("/penyewa", require("./routes/penyewa"))
 app.use("/kost", require("./routes/kost"))
+app.use("/bank", require("./routes/bank"))
+app.use("/pemilik", require("./routes/pemilik"))
+app.use("/pembayaran", require("./routes/pembayaran"))
 
 
 

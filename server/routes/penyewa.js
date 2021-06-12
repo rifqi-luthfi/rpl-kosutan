@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const { 
-    getAllUsers,
     registerUser,
     loginUser,
     isTokenValid,
