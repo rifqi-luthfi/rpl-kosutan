@@ -22,6 +22,10 @@ const KostList = () => {
         })
         setKosts(kostsResponse.data)
     }
+    const handleRedirect = (e) => {
+        e.preventPropagation()
+        alert("test")
+    }
 
     useEffect(() => {
         if (city) fetchKostDataByCity()
@@ -30,8 +34,8 @@ const KostList = () => {
 
     return (
         <>
-            <div className="bg-green-op_15 py-32">
-                <div className="container mx-auto flex flex-col px-6 md:px-6 lg:px-0">
+            <div className="my-12 py-32 lg:my-0">
+                <div className=" container mx-auto flex flex-col px-6 md:px-6 lg:px-0">
                     <h1 className="text-green-dark text-4xl font-bold tracking-tighter mb-4">
                         Kost Lists
                     </h1>
@@ -42,7 +46,7 @@ const KostList = () => {
                         <div className="flex-grow grid grid-cols-1 gap-3 lg:grid-cols-4 md:grid-cols-2">
                             {
                                 kosts.map((data, i) => {
-                                    return <Link to={`kosts/${data.id_kost}`}><KostCard key={i} data={data}></KostCard></Link> 
+                                    return <KostCard key={i} data={data}></KostCard>
                                 })  
                             }
                         </div>

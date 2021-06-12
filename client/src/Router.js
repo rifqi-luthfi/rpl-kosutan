@@ -13,6 +13,8 @@ import KostList from './page/KostList';
 import Login from './page/Login';
 import Register from './page/Register';
 import DetailKost from './page/DetailKost';
+import Checkout from './page/Checkout'
+import { useHistory } from "react-router-dom";
 import Footer from './layout/Footer';
 import PostKost from './page/PostKost';
 
@@ -21,6 +23,7 @@ const LoggedInRoute = ({ children, ...rest }) => {
     // diakses oleh logged in user
 
     // ambil state isUserLoggedIn dari global context
+    
     const { isUserLoggedIn } = useContext(GlobalContext);
     return (
       <Route
@@ -92,10 +95,20 @@ const Router = () => {
                     }
                     <KostList />
                 </Route>
-                <Route path='/kosts/:id'>
-                    <Header/>
+                <Route exact path='/kosts/:id'>
+                    {
+                        isUserLoggedIn? 
+                        <HeaderLogin/> : <Header />  
+                    }
                     <DetailKost/>
                 </Route>
+                <LoggedInRoute exact path="/kosts/book/:id" >
+                    {
+                        isUserLoggedIn? 
+                        <HeaderLogin/> : <Header />  
+                    }
+                    <Checkout />
+                </LoggedInRoute>
             
                 <NotLoggedInRoute exact path='/login'>
                     <Header/>

@@ -1,9 +1,14 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 import Button from './Button'
 
 const KostCard = ({data}) => {
+    const history = useHistory()
+    const handleGotoDetail = () => {
+        history.push(`/kosts/${data.id_kost}`)
+    }
     return (
-        <div class="shadow border rounded-2xl">
+        <div onClick={handleGotoDetail} class="shadow border rounded-2xl cursor-pointer">
             <img className="w-full h-64 object-cover rounded-t-2xl" alt="logo" src={data.img ? process.env.PUBLIC_URL + "/kosts/" + data.img : process.env.PUBLIC_URL + "/kosts/default.png"}></img>
             <div class="grid p-6 lg:px-4">
                 <p class="text-gray-500 font-semibold">{data.jenis_kost}</p>
