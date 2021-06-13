@@ -8,7 +8,6 @@ import FormPostKost from '../forms/FormPostKost';
 const PostKost = () => {
     return (
         <>
-        <Header/>
         <div className="container">
             <div className="bg-white lg:w-5/12  w-10/12 m-auto my-10 shadow-md rounded-xl mt-24">
                 <div className="py-8 px-8 rounded-xl">

@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const cookieParser = require('cookie-parser')
+const path = require("path");
 require("dotenv").config();
 
 // connect database PostgreSQL
@@ -13,6 +14,12 @@ const app = express()
 app.use(cookieParser());
 app.use(cors())
 app.use(express.json())
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../client/build")));
+  }
+app.use(express.static(path.join(__dirname, "./public")));
+
 
 // gunakan port sesuai setting env, jika tidak ada gunakan port 5000 (default)
 const PORT = process.env.PORT || 5000;

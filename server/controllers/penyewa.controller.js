@@ -97,10 +97,12 @@ const isTokenValid = async (req, res) => {
     try {
         // Check is token exist?
         const token = req.cookies.token;
+        console.log(token)
         if (!token) return res.json(false);
 
         // Verify token
         const tokenVerified = jwt.verify(token, process.env.JWT_SECRET_PENYEWA);
+
         if (!tokenVerified) {
             return res.json(false);
         }

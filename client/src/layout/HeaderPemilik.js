@@ -9,7 +9,7 @@ import ProfileDropdown from '../components/ProfileDropdown';
 import { GlobalContext } from '../context/GlobalContext';
 
 
-const HeaderLogin = () => {
+const HeaderPemilik = () => {
     const { user } = useContext(GlobalContext);
     const handleHamburger = () => {
         const drawer = document.getElementById('drawer').classList
@@ -28,7 +28,7 @@ const HeaderLogin = () => {
 
     const handleLogout = async () => {
         await axios
-            .get("/penyewa/endSession", { withCredentials: true })
+            .get("/pemilik/endSession", { withCredentials: true })
             .then((window.location.href = "/")
         )
     }
@@ -60,6 +60,7 @@ const HeaderLogin = () => {
                 </div>
 
                 <div className="hidden w-full flex-grow lg:flex items-center lg:w-auto">
+                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/dashboard">Dashboard</Link>
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/home">Home</Link>
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
@@ -76,7 +77,7 @@ const HeaderLogin = () => {
                             <img className="h-20 mr-3 mb-3" src={me} alt='Admin Image'/> 
                             <div className='mr-3'>
                                 <p className='text-green-dark font-semibold'>{user && user.nama_awal} {user && user.nama_akhir}</p>
-                                <p className='text-gray-500 text-sm -mt-1 '>Penyewa</p>
+                                <p className='text-gray-500 text-sm -mt-1 '>Pemilik</p>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-3 mt-6">
@@ -87,16 +88,18 @@ const HeaderLogin = () => {
             
                     </div>
 
-                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/home">Home</Link>
-                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
-                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
-                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/kostlist">Kosts</Link>
+                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/dashboard">Dashboard</Link>
+                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/home">Home</Link>
+                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
+                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
+                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 font-semibold text-light-gray transition duration-300 ease-in-out" to="/kostlist">Kosts</Link>
+                    
                 </div>
                 <div className='hidden lg:flex items-center lg:w-auto'>
                     <div className='flex items-center cursor-pointer' onClick={handleDropdown}>
                         <div className='mr-3'>
                             <p className='text-green-dark font-semibold'>{user && user.nama_awal} {user && user.nama_akhir}</p>
-                            <p className='text-gray-500 text-sm -mt-1 '>Penyewa</p>
+                            <p className='text-gray-500 text-sm -mt-1 '>Pemilik</p>
                         </div>
                         <img className="h-10 mr-3" src={me} alt='Admin Image'/>
                         <ProfileDropdown />
@@ -107,4 +110,4 @@ const HeaderLogin = () => {
     )
 }
 
-export default HeaderLogin
+export default HeaderPemilik

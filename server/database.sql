@@ -84,22 +84,24 @@ CREATE TABLE pembayaran(
     id_pembayaran INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     id_penyewa INT,
     id_kost INT,
+    id_pemilik INT,
     id_rekening SERIAL,
     tanggal_trf date,
     total_pembayaran INT, 
     status VARCHAR(32),
 
-    CONSTRAINT fk_rekening2
-        FOREIGN KEY (id_rekening)
-            REFERENCES rekening(id_rekening),
+    -- CONSTRAINT fk_rekening2
+    --     FOREIGN KEY (id_rekening)
+    --         REFERENCES rekening(id_rekening)
+    -- ON DELETE CASCADE,
 
-    CONSTRAINT fk_penyewa2
-        FOREIGN KEY (id_penyewa)
-            REFERENCES penyewa(id_penyewa),
+    -- CONSTRAINT fk_penyewa2
+    --     FOREIGN KEY (id_penyewa)
+    --         REFERENCES penyewa(id_penyewa),
 
-    CONSTRAINT fk_kost
-        FOREIGN KEY (id_kost)
-            REFERENCES kost(id_kost)
+    -- CONSTRAINT fk_kost
+    --     FOREIGN KEY (id_kost)
+    --         REFERENCES kost(id_kost)
 );
 
 CREATE TABLE sewa(

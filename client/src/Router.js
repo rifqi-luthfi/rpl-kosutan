@@ -17,21 +17,46 @@ import Checkout from './page/Checkout'
 import { useHistory } from "react-router-dom";
 import Footer from './layout/Footer';
 import PostKost from './page/PostKost';
+import HeaderPemilik from './layout/HeaderPemilik';
+import Dashboard from './page/Dashboard';
 
 const LoggedInRoute = ({ children, ...rest }) => {
     // protected route, digunakan untuk component yang hanya dapat 
     // diakses oleh logged in user
 
-    // ambil state isUserLoggedIn dari global context
+    // ambil state isUserPenyewa dari global context
     
-    const { isUserLoggedIn } = useContext(GlobalContext);
+    const { isUserPenyewa } = useContext(GlobalContext);
     return (
       <Route
         {...rest}
         render={({ location }) =>
         
           // apabila user logged in maka render children
-          isUserLoggedIn? (
+          isUserPenyewa? (
+            children
+          ) : (
+            // redirect ke login apabila user belum logged in
+            <Redirect to={{ pathname: "/login", state: { from: location } }} />
+          )
+        }
+      ></Route>
+    );
+  };
+  const LoggedInRoutePemilik = ({ children, ...rest }) => {
+    // protected route, digunakan untuk component yang hanya dapat 
+    // diakses oleh logged in user
+
+    // ambil state isUserPenyewa dari global context
+    
+    const { isUserPemilik } = useContext(GlobalContext);
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+        
+          // apabila user logged in maka render children
+          isUserPemilik? (
             children
           ) : (
             // redirect ke login apabila user belum logged in
@@ -46,18 +71,19 @@ const NotLoggedInRoute = ({ children, ...rest }) => {
     // protected route, digunakan untuk component yang hanya dapat 
     // diakses oleh user belum logged in
 
-    // ambil state isUserLoggedIn dari global context
-    const { isUserLoggedIn } = useContext(GlobalContext);
+    // ambil state isUserPenyewa dari global context
+    const { isUserPenyewa, isUserPemilik } = useContext(GlobalContext);
+
     return (
         <Route
         {...rest}
         render={({ location }) =>
             // apabila baru first render, {}
-            isUserLoggedIn.constructor === Object? (
+            isUserPenyewa.constructor === Object? (
                 children
             ) : 
             // apabila baru user belum logged in
-            !isUserLoggedIn ? (
+            !isUserPenyewa && !isUserPemilik ? (
                 children
             ) : (
                 // redirect ke root apabila user sudah logged in
@@ -68,54 +94,53 @@ const NotLoggedInRoute = ({ children, ...rest }) => {
     );
 };
 const Router = () => {
-    // ambil state isUserLoggedIn dari global context
-    const { isUserLoggedIn } = useContext(GlobalContext);
+    // ambil state isUserPenyewa dari global context
+    const { isUserPenyewa, isUserPemilik } = useContext(GlobalContext);
+    let header;
+    if (isUserPenyewa) { header = <HeaderLogin/> }
+    if (isUserPemilik) { header = <HeaderPemilik /> }
+    if (!isUserPenyewa && !isUserPemilik) { header = <Header /> }
 
     return (
         <RouterComp>
             <Switch>
                 <Route exact path='/'>
-                    {
-                        isUserLoggedIn? 
-                        <HeaderLogin/> : <Header />  
-                    }
+                    {header}
                     <Home />
                 </Route>
                 <Route exact path='/home'>
-                    {
-                        isUserLoggedIn? 
-                        <HeaderLogin/> : <Header />  
-                    }
+                    {header}
                     <Home />
                 </Route>
                 <Route path='/kostlist/:city?'>
-                    {
-                        isUserLoggedIn? 
-                        <HeaderLogin/> : <Header />  
-                    }
+                    {header}
                     <KostList />
                 </Route>
                 <Route exact path='/kosts/:id'>
-                    {
-                        isUserLoggedIn? 
-                        <HeaderLogin/> : <Header />  
-                    }
+                    {header}
                     <DetailKost/>
                 </Route>
                 <LoggedInRoute exact path="/kosts/book/:id" >
-                    {
-                        isUserLoggedIn? 
-                        <HeaderLogin/> : <Header />  
-                    }
+                    {header}
                     <Checkout />
                 </LoggedInRoute>
-            
+                
+                <LoggedInRoutePemilik exact path="/dashboard">
+                    {header}
+                    <Dashboard />
+                </LoggedInRoutePemilik>
+
+                <LoggedInRoutePemilik exact path="/dashboard/addkost">
+                    {header}
+                    <PostKost />
+                </LoggedInRoutePemilik>
+                
                 <NotLoggedInRoute exact path='/login'>
-                    <Header/>
+                    {header}
                     <Login />
                 </NotLoggedInRoute>
                 <NotLoggedInRoute exact path='/register'>
-                    <Header/>
+                    {header}
                     <Register />
                 </NotLoggedInRoute>
         

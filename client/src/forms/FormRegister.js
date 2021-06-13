@@ -24,6 +24,7 @@ const FormRegister = () => {
 
     const [open, setOpen] = useState(false)
     const [openDanger, setOpenDanger] = useState(false)
+    const [registerType, setRegisterType] = useState(false)
     const [error, setError] = useState("")
     const history = useHistory();
 
@@ -67,20 +68,36 @@ const FormRegister = () => {
                         
                     }
                     try {
-                        const response = await axios.post("/penyewa/register", user)
-                        console.log(response)
-                        if (response.status === 200) {
-                            handleOpen()
-                            setTimeout(() => {
-                                handleClose()
-                                history.push("/home")
-                            }, 3000);
+                        if (registerType === "penyewa") {
+                            const response = await axios.post("/penyewa/register", user)
+                            if (response.status === 200) {
+                                handleOpen()
+                                setTimeout(() => {
+                                    handleClose()
+                                    history.push("/home")
+                                }, 3000);
+                            } else {
+                                setError(error.response.data.msg)
+                                handleOpenDanger()
+                                setTimeout(() => {
+                                    handleCloseDanger()
+                                }, 2500);
+                            }
                         } else {
-                            setError(error.response.data.msg)
-                            handleOpenDanger()
-                            setTimeout(() => {
-                                handleCloseDanger()
-                            }, 2500);
+                            const response = await axios.post("/pemilik/register", user)
+                            if (response.status === 200) {
+                                handleOpen()
+                                setTimeout(() => {
+                                    handleClose()
+                                    history.push("/dashboard")
+                                }, 3000);
+                            } else {
+                                setError(error.response.data.msg)
+                                handleOpenDanger()
+                                setTimeout(() => {
+                                    handleCloseDanger()
+                                }, 2500);
+                            }
                         }
                     } catch (error) {
                         console.log(error.response.data.msg)
@@ -138,8 +155,9 @@ const FormRegister = () => {
                                 <FieldError>{errors.phoneNumber}</FieldError>
                             ) : null}
                         </div>
-                        <div className="flex mt-6 flex-col md:flex-row text-lg">
-                            <Button type="submit"  variant="primary" size="lg">Sign up</Button>
+                        <div className="flex mt-6 flex-col md:flex-row text-lg gap-3">
+                            <Button onClick={() => setRegisterType("pemilik")} type="submit" variant="primary" size="lg">Sign up Pemilik</Button>
+                            <Button onClick={() => setRegisterType("penyewa")} type="submit" variant="primary" size="lg">Sign up Penyewa</Button>
                         </div>
                     </Form>
                 )}
