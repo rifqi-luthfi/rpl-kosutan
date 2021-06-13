@@ -7,13 +7,14 @@ export const GlobalContext = createContext();
 // Provide component
 export const GlobalProvider = ({ children }) => {
     const [user, setUser] = useState(undefined);
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState({});
+    const [isUserPenyewa, setIsUserPenyewa] = useState({});
+    const [isUserPemilik, setIsUserPemilik] = useState({});
     const [isAdmin, setIsAdmin] = useState({});
 
     async function checkUserLoggedIn() {
         // Check is token valid
         const isTokenValid = await axios.get("/penyewa/isTokenValid");
-        setIsUserLoggedIn(isTokenValid.data);
+        setIsUserPenyewa(isTokenValid.data);
 
         if (isTokenValid.data) {
         // Check user data exist
@@ -23,9 +24,25 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    async function checkUserLoggedInPemilik() {
+        // Check is token valid
+        const isTokenValid = await axios.get("/pemilik/isTokenValid");
+        setIsUserPemilik(isTokenValid.data);
+
+        if (isTokenValid.data) {
+        // Check user data exist
+        const user = await axios.get("/pemilik/getUserLoggedIn");
+            setUser(user.data);
+
+        }
+    }
+
+    
+
     // Use effect to check every page / component change
     useEffect(() => {
         checkUserLoggedIn(); // eslint-disable-line react-hooks/exhaustive-deps
+        checkUserLoggedInPemilik();
     }, []);
 
     return (
@@ -34,8 +51,10 @@ export const GlobalProvider = ({ children }) => {
             user,
             isAdmin,
             setUser,
-            isUserLoggedIn,
+            isUserPenyewa,
+            isUserPemilik,
             checkUserLoggedIn,
+            checkUserLoggedInPemilik
         }}
         >
         {children}

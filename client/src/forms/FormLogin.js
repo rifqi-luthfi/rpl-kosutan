@@ -19,7 +19,8 @@ const FormLogin = () => {
     const [open, setOpen] = useState(false)
     const [error, setError] = useState("")
     const [openDanger, setOpenDanger] = useState(false)
-    const { checkUserLoggedIn } = useContext(GlobalContext);
+    const [loginType, setLoginType] = useState("false")
+    const { checkUserLoggedIn, checkUserLoggedInPemilik } = useContext(GlobalContext);
 
     const handleOpen = () => {
         setOpen(true)
@@ -51,19 +52,36 @@ const FormLogin = () => {
                         password: values.password
                     }
                     try {
-                        const response = await axios.post("/penyewa/login", user)
-                        if (response.status === 200) {
-                            handleOpen()
-                            await checkUserLoggedIn()
-                            setTimeout(() => {
-                                handleClose()
-                            }, 2500);
+                        if (loginType === "penyewa") {
+                            const response = await axios.post("/penyewa/login", user)
+                            if (response.status === 200) {
+                                handleOpen()
+                                await checkUserLoggedIn()
+                                setTimeout(() => {
+                                    handleClose()
+                                }, 2500);
+                            } else {
+                                setError(error.response.data.msg)
+                                handleOpenDanger()
+                                setTimeout(() => {
+                                    handleCloseDanger()
+                                }, 2500)
+                            }
                         } else {
-                            setError(error.response.data.msg)
-                            handleOpenDanger()
-                            setTimeout(() => {
-                                handleCloseDanger()
-                            }, 2500)
+                            const response = await axios.post("/pemilik/login", user)
+                            if (response.status === 200) {
+                                handleOpen()
+                                await checkUserLoggedInPemilik()
+                                setTimeout(() => {
+                                    handleClose()
+                                }, 2500);
+                            } else {
+                                setError(error.response.data.msg)
+                                handleOpenDanger()
+                                setTimeout(() => {
+                                    handleCloseDanger()
+                                }, 2500)
+                            }
                         }
                         
                     } catch (error) {
@@ -96,8 +114,9 @@ const FormLogin = () => {
                             </div>
                         </div>
 
-                        <div className='flex'>
-                            <Button className="" variant="primary" size="lg">Login</Button>
+                        <div className='flex gap-3  mt-6 flex-col md:flex-row text-lg '>
+                            <Button onClick={() => setLoginType("pemilik")} className="" variant="primary" size="lg">Login Pemilik</Button>
+                            <Button onClick={() => setLoginType("penyewa")} className="" variant="primary" size="lg">Login Penyewa</Button>
                         </div>
                     </Form>
                 )}

@@ -31,11 +31,15 @@ const DetailKost = () => {
                     id: id
                 }
             })
+            setData(response.data)
+
             const responseRekening = await axios.get("/pemilik/getPemilikRekening", {
                 params : {
                     id: response.data.id_pemilik,
                 }
             })
+            setBanks(responseRekening.data)
+
             const responseUserStatus = await axios.get("/pembayaran/getUserKostStatus", {
                 params: {
                     id_penyewa: user.id,
@@ -43,8 +47,6 @@ const DetailKost = () => {
                 }
             })
             setStatus(responseUserStatus.data)
-            setData(response.data)
-            setBanks(responseRekening.data)
 
             
         } catch (error) {
@@ -69,6 +71,7 @@ const DetailKost = () => {
                 id_rekening: radioValue,
                 id_kost: id,
                 id_penyewa: user.id,
+                id_pemilik: data.id_pemilik,
                 total_pembayaran: data.harga,
             }
             await axios.post("/pembayaran/addPembayaran", dataPembayaran)
@@ -80,7 +83,6 @@ const DetailKost = () => {
     useEffect(() => {
         fetchKostData()
         fetchAvailalePayment()
-
     }, [])
 
     return (
