@@ -5,7 +5,9 @@ import { useHistory } from 'react-router'
 import axios from 'axios'
 import { RadioGroup, Radio } from 'react-radio-group'
 import { useParams } from 'react-router'
+import Alert from '../components/Alert'
 import { GlobalContext } from '../context/GlobalContext';
+import ConfirmationModal from '../components/ConfirmationModal'
 
 
 
@@ -21,9 +23,13 @@ const DetailKost = () => {
     const [banks, setBanks] = useState([{}])
     const [status, setStatus] = useState([{}])
     const [error, setError] = useState("")
+    const [show, setShow] = useState(false)
     const [radioValue, setRadioValue] = useState("")
+    const [openDanger, setOpenDanger] = useState(false)
+    const [open, setOpen] = useState(false)
     const { id } = useParams()
     const { user } = useContext(GlobalContext);
+    const history = useHistory()
     const fetchKostData = async () => {
         try {
             const response = await axios.get("/kost/getKostById", {
@@ -39,7 +45,6 @@ const DetailKost = () => {
                 }
             })
             setBanks(responseRekening.data)
-
             const responseUserStatus = await axios.get("/pembayaran/getUserKostStatus", {
                 params: {
                     id_penyewa: user.id,
@@ -73,24 +78,39 @@ const DetailKost = () => {
                 id_penyewa: user.id,
                 id_pemilik: data.id_pemilik,
                 total_pembayaran: data.harga,
-            }
+            }   
             await axios.post("/pembayaran/addPembayaran", dataPembayaran)
+            setOpen(true)
+            setShow(false)
+            setTimeout(() => {
+                setOpen(false)
+                history.push("/history")
+            }, 2500);
         } catch (error) {
             setError(error)
+            setOpenDanger(true)
+            setShow(false)
+            setTimeout(() => {
+                setOpenDanger(false)
+            }, 2500);
         }
     }
 
     useEffect(() => {
-        fetchKostData()
         fetchAvailalePayment()
-    }, [])
+        fetchKostData() 
+    }, []) //eslint-disable-line
 
     return (
         
         <>
+        <Alert name="alert-success" variant='success' open={open} handleClose={() => setOpen(false)}>Kost successfuly booked!</Alert>
+        <Alert name="alert-danger" variant='danger' open={openDanger} handleClose={() => setOpenDanger(false)}>Error occured</Alert>
+        <ConfirmationModal show={show} setShow={setShow} message={"Are you sure you want to book this kost?"} onContinue={(e) => handleBookNow(e)}/>
         {data !== undefined && (
+            
             <div className="container grid grid-cols-1 my-32 gap-3 md:grid-cols-3 lg:grid-cols-3 px-6 md:px-6 lg:px-0">
-                <div className=" bg-white z-20 col-span-1 md:col-span-2 border p-5 rounded-xl">
+                <div className=" bg-white z-10 col-span-1 md:col-span-2 border p-5 rounded-xl">
                     <div>
                         <h1 className="text-green-dark text-2xl font-bold mb-3">Checkout</h1>
                         <div className="inline-flex gap-5">
@@ -114,7 +134,7 @@ const DetailKost = () => {
                         </div>
                     </div>
                 </div>
-                <div className=" bg-white z-20 border p-5 rounded-xl">
+                <div className=" bg-white z-10 border p-5 rounded-xl">
                     <div className="mb-5">
                         <h1 className="font-semibold text-green-dark text-xl">Kost Name</h1>
                         <p className="text-gray-500">{data.nama_kost}</p>
@@ -151,11 +171,11 @@ const DetailKost = () => {
                     {
                         status ? (
                             <div className="flex mt-7"  >
-                                <Button onClick={handleBookNow} variant="disabled" size="lg">Book now</Button>
+                                <Button variant="disabled" size="lg">Book now</Button>
                             </div>
                         ) : (
                             <div className="flex mt-7"  >
-                                <Button onClick={handleBookNow} variant="primary" size="lg">Book now</Button>
+                                <Button onClick={() => setShow(true)} variant="primary" size="lg">Book now</Button>
                             </div>
                         )
                     }

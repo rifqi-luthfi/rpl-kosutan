@@ -97,7 +97,6 @@ const isTokenValid = async (req, res) => {
     try {
         // Check is token exist?
         const token = req.cookies.token;
-        console.log(token)
         if (!token) return res.json(false);
 
         // Verify token

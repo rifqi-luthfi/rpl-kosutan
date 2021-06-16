@@ -52,3 +52,13 @@ module.exports = function (app) {
     })
   );
 };
+
+module.exports = function (app) {
+  app.use(
+    "/sewa",
+    createProxyMiddleware({
+      target: "http://localhost:5000",
+      changeOrigin: true,
+    })
+  );
+};

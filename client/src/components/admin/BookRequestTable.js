@@ -25,12 +25,8 @@ const BookRequestTable = ({ data }) => {
                     accessor: "id_penyewa"
                 },
                 {
-                    Header: "Nama Pemilik",
+                    Header: "Nama",
                     accessor: "nama_akhir"
-                },
-                {
-                    Header: "No HP Pemilik",
-                    accessor: "no_hp"
                 },
                 {
                     Header: "Nama Kost",
@@ -49,18 +45,75 @@ const BookRequestTable = ({ data }) => {
                     accessor: "tanggal_trf"
                 },  
                 {
-                    Header: "Status Payment",
+                    Header: "Status",
                     accessor: "status"
                 },    
-                
+                {
+                    Header: "Payment",
+                    accessor: "approve_payment",
+                    id: 'approve_payment',
+                    Cell: (tableProps) => (
+                        <>    
+                            {
+                                tableProps.row.original.status === "pending" ? 
+                                <button onClick={(e) => handleApprovePayment(e, tableProps) } className="focus:outline-none bg-green text-white font-semibold rounded-md hover:bg-green-dark transition duration-300 ease-in-out py-2 px-4">Approve</button>:
+                                <button className="focus:outline-none bg-gray-200 text-gray-400 font-semibold rounded-md cursor-default transition duration-300 ease-in-out py-2 px-4">Approve</button>
+                            }
+                        </>
+                    )
+                },
+                {
+                    Header: "Accept Residency",
+                    accessor: "approve_residency",
+                    id: 'approve_residency',
+                    Cell: (tableProps) => (
+                        <>   
+                            {
+                                tableProps.row.original.status === "pending" ? 
+                                <button className="focus:outline-none bg-gray-200 text-gray-400 font-semibold rounded-md cursor-default transition duration-300 ease-in-out py-2 px-4">Accept</button> :
+                                <button onClick={(e) => handleAddResident(e, tableProps) } className="focus:outline-none bg-green text-white font-semibold rounded-md hover:bg-green-dark transition duration-300 ease-in-out py-2 px-4">Accept</button>
+                            }
+                        </>
+                    )
+                },
             ], []
     )
-    
+    const handleApprovePayment = async (e, tableProps) => {
+        e.stopPropagation()
+        e.preventDefault()
+        try {
+            const response = await axios.put("pembayaran/updatePembayaranStatus", {
+                id: tableProps.row.original.id_pembayaran
+            })
+        } catch (error) {
+            setError(error)
+        }
+    }
+    const handleAddResident = async (e, tableProps) => {
+        e.stopPropagation()
+        e.preventDefault()
+        const data = tableProps.row.original
+        try {
+            const response = await axios.post("sewa/addSewaDocument", {
+                id_kost: data.id_kost, 
+                id_penyewa: data.id_penyewa,
+                id_pembayaran: data.id_pembayaran                
+            })
+            await axios.put("pembayaran/clearPembayaranStatus", {
+                id: tableProps.row.original.id_pembayaran
+            })
+        } catch (error) {
+            setError(error)
+        }
+    }
     const handleFilterChange = e => {
         const value = e.target.value || undefined;
         setFilter("nama_kost", value); 
         setFilterInput(value);
     };
+    const handleEditKost = (e, tableProps) => {
+        e.stopPropagation();
+    }
     const {
         getTableProps,
         getTableBodyProps,
@@ -117,3 +170,6 @@ const BookRequestTable = ({ data }) => {
 }
 
 export default BookRequestTable
+
+
+

@@ -35,6 +35,7 @@ app.use("/kost", require("./routes/kost"))
 app.use("/bank", require("./routes/bank"))
 app.use("/pemilik", require("./routes/pemilik"))
 app.use("/pembayaran", require("./routes/pembayaran"))
+app.use("/sewa", require("./routes/sewa"))
 
 
 

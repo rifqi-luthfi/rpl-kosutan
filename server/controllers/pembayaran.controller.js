@@ -30,7 +30,7 @@ const addPembayaran = async (req, res) => {
 const getUserKostStatus = async (req, res) => {
     try {
         let { id_penyewa, id_kost } = req.query
-        const response = await pool.query("SELECT * FROM pembayaran INNER JOIN penyewa ON pembayaran.id_penyewa = penyewa.id_penyewa WHERE penyewa.id_penyewa= $1 AND pembayaran.id_kost=$2 LIMIT 1;", [id_penyewa, id_kost])
+        const response = await pool.query("SELECT * FROM pembayaran INNER JOIN penyewa ON pembayaran.id_penyewa = penyewa.id_penyewa WHERE penyewa.id_penyewa= $1 AND pembayaran.id_kost=$2 AND pembayaran.status != 'clear' LIMIT 1;", [id_penyewa, id_kost])
         res.send(response.rows[0])
     } catch (error) {
         return res.status(500).json(error)
@@ -39,9 +39,38 @@ const getUserKostStatus = async (req, res) => {
 
 const getPemilikBookRequests = async (req, res) => {
     try {
-        const response = await pool.query("SELECT id_pembayaran, kost.nama_kost, nama_awal, nama_akhir, nama_bank, no_rek, tanggal_trf, status FROM pembayaran INNER JOIN kost ON pembayaran.id_kost = kost.id_kost INNER JOIN penyewa ON pembayaran.id_penyewa = penyewa.id_penyewa INNER JOIN rekening ON rekening.id_rekening = pembayaran.id_rekening INNER JOIN bank ON rekening.id_bank = bank.id_bank WHERE pembayaran.id_pemilik = $1", [req.userId])
+        const response = await pool.query("SELECT id_pembayaran, kost.id_kost, pembayaran.id_penyewa, kost.nama_kost, nama_awal, nama_akhir, nama_bank, no_rek, tanggal_trf, status FROM pembayaran INNER JOIN kost ON pembayaran.id_kost = kost.id_kost INNER JOIN penyewa ON pembayaran.id_penyewa = penyewa.id_penyewa INNER JOIN rekening ON rekening.id_rekening = pembayaran.id_rekening INNER JOIN bank ON rekening.id_bank = bank.id_bank WHERE pembayaran.id_pemilik = $1 AND pembayaran.status != 'clear'", [req.userId])
         res.send(response.rows)
 
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
+
+const getPenyewaBookRequests = async (req, res) => {
+    try {
+        const response = await pool.query("SELECT id_pembayaran, pemilik.no_hp, kost.id_kost, pembayaran.id_penyewa, kost.nama_kost, pemilik.nama_awal, pemilik.nama_akhir, nama_bank, no_rek, tanggal_trf, status FROM pembayaran INNER JOIN kost ON pembayaran.id_kost = kost.id_kost INNER JOIN penyewa ON pembayaran.id_penyewa = penyewa.id_penyewa INNER JOIN rekening ON rekening.id_rekening = pembayaran.id_rekening INNER JOIN bank ON rekening.id_bank = bank.id_bank INNER JOIN pemilik ON pemilik.id_pemilik = pembayaran.id_pemilik WHERE pembayaran.id_penyewa = $1 AND pembayaran.status != 'clear'", [req.userId])
+        res.send(response.rows)
+
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
+const updatePembayaranStatus = async (req, res) => {
+    try {
+        const { id } = req.body
+        const response = await pool.query("UPDATE pembayaran SET status = 'completed' WHERE id_pembayaran = $1", [id])
+        res.send(response.rows)
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
+
+const clearPembayaranStatus = async (req, res) => {
+    try {
+        const { id } = req.body
+        const response = await pool.query("UPDATE pembayaran SET status = 'clear' WHERE id_pembayaran = $1", [id])
+        res.send(response.rows)
     } catch (error) {
         return res.status(500).json(error)
     }
@@ -49,5 +78,8 @@ const getPemilikBookRequests = async (req, res) => {
 module.exports = {
     addPembayaran,
     getUserKostStatus,
-    getPemilikBookRequests
+    getPemilikBookRequests,
+    updatePembayaranStatus,
+    getPenyewaBookRequests,
+    clearPembayaranStatus
 }

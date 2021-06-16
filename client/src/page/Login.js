@@ -7,14 +7,6 @@ import { GoogleLogin } from "react-google-login"
 
 const Login = () => {
 
-    const onSuccess = (res) => {
-        console.log(res.profileObj)
-    }
-
-    const onFailure = (res) => {
-        console.log(res)
-    }
-
     return (
         <>
         <div className="container">
@@ -32,14 +24,14 @@ const Login = () => {
                     </h1>
 
                     <FormLogin />
-                    
+{/*                     
                     <div className="flex md:justify-between justify-center items-center mt-10">
                         <div className="bg-gray-300 md:block hidden w-4/12 h-1"></div>
                         <p className="md:mx-2 text-sm text-gray-400"> Login With Social </p> 
                         <div className="bg-gray-300 md:block hidden w-4/12 h-1"></div>
-                    </div>
+                    </div> */}
 
-                        <GoogleLogin 
+                        {/* <GoogleLogin 
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Login"
                             component={Button}
@@ -52,11 +44,11 @@ const Login = () => {
                                     <Button variant="outlined" size="lg">Google</Button>
                                 </div>
                             )}
-                        />
+                        /> */}
 
                     
 
-                    <p className="mt-12 text-xs text-center font-light text-gray-400"> Are you Kost owner? <a href="../auth/register.html" className="text-gray-500 hover:text-green-darkest hover:font-bold font-medium"> Create One </a>  </p> 
+                    {/* <p className="mt-12 text-xs text-center font-light text-gray-400"> Dont have an account? <a href="/register" className="text-gray-500 hover:text-green-darkest hover:font-bold font-medium"> Create One </a>  </p>  */}
 
                 </div>
             </div>

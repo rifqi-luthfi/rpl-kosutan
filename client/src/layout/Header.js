@@ -36,8 +36,6 @@ const Header = () => {
 
                 <div className="hidden w-full flex-grow lg:flex items-center lg:w-auto">
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/home">Home</Link>
-                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
-                    <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 mr-4 font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
                     <Link className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block mt-1 font-semibold text-light-gray transition duration-300 ease-in-out" to="/kostlist">Kosts</Link>
                 </div>
                 <div className="hidden lg:flex">
@@ -55,8 +53,6 @@ const Header = () => {
                         
                     </FontAwesomeIcon>
                     <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/home">Home</Link>
-                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/services">Services</Link>
-                    <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/about">About</Link>
                     <Link onClick={handleHamburger} className="text-gray-600 hover: hover:bg-gray-100 px-5 py-1 rounded-xl block font-semibold text-light-gray transition duration-300 ease-in-out" to="/kostlist">Kosts</Link>
                     <Link onClick={handleHamburger} to="/login">
                         <Button variant='secondary' size="lg">Log in</Button>

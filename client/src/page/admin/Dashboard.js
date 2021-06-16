@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
-import PemilikTable from '../components/PemilikTable'
+import PemilikTable from '../../components/admin/PemilikTable'
 import axios from "axios";
-import BookRequestTable from '../components/BookRequestTable';
-import ConfirmationModal from '../components/ConfirmationModal';
-
+import BookRequestTable from '../../components/admin/BookRequestTable';
 const Dashboard = () => {
     const [kosts, setKosts] = useState([{}])
     const [books, setBooks] = useState([{}])
@@ -41,12 +39,11 @@ const Dashboard = () => {
             setError(error)
         }
     }
-    
-    useEffect(() => {
-        fetchKostData()
-        fetchBookRequests()
 
-    }); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        fetchBookRequests()
+        fetchKostData()
+    }, [kosts, books])
     return (
         <>
            <div className="container my-32 z-50">
@@ -67,8 +64,6 @@ const Dashboard = () => {
                         <PemilikTable data={kosts}/> : 
                         <BookRequestTable data={books} />
                     }
-                    
-                   
                 </content>
             </div> 
         </>
