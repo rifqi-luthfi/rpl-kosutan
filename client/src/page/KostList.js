@@ -3,17 +3,18 @@ import axios from "axios";
 import KostCard from '../components/KostCard'
 import Footer from '../layout/Footer';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const KostList = () => {
     const [kosts, setKosts] = useState([{}])
-    const { city } = useParams()
+    const [filterInput, setFilterInput] = useState("");
+    const { city } = useParams() 
 
     const fetchKostData = async () => {
         const kostsResponse = await axios.get("/kost/getAllKost")
         setKosts(kostsResponse.data)
     }
-
     const fetchKostDataByCity = async () => {
         const kostsResponse = await axios.get("/kost/getKostByCity", {
             params: {
@@ -22,9 +23,22 @@ const KostList = () => {
         })
         setKosts(kostsResponse.data)
     }
-    const handleRedirect = (e) => {
-        e.preventPropagation()
-        alert("test")
+    const handleFilterChange = e => {
+        const value = e.target.value || undefined;
+        setFilterInput(value);
+    };
+
+    const handleSearchKost = async () => {
+        if (filterInput === "" || filterInput === undefined) { 
+            handleResetSearch()
+        }
+        else {
+            setKosts(kosts.filter(o => o.nama_kost.toLowerCase().includes(filterInput.toLowerCase())))
+        }        
+    }
+    const handleResetSearch = async () => {
+        if (city) fetchKostDataByCity()
+        else fetchKostData()
     }
 
     useEffect(() => {
@@ -42,7 +56,13 @@ const KostList = () => {
                     <h1 className="mb-8 font-medium text-lg text-green-dark">
                         Temukan inspirasi dan ikut berbagi momen di Ruang #NyamannyaKamu
                     </h1>
-                    <div className="bg-white p-12 rounded-lg">
+                    <span className="relative">
+                        <input value={filterInput} onChange={handleFilterChange} className="border p-2 focus:outline-none rounded-lg text-gray-800 w-60" placeholder="search kost"></input>
+                        <button onClick={handleSearchKost} className="focus:outline-none bg-green text-white font-semibold rounded-md hover:bg-green-dark transition duration-300 ease-in-out py-3 px-6 ml-3">Search</button>
+                        <button onClick={handleResetSearch} className="focus:outline-none bg-green text-white font-semibold rounded-md hover:bg-green-dark transition duration-300 ease-in-out py-3 px-6 ml-3">Reset</button>
+                    </span>
+
+                    <div className="bg-white py-8 rounded-lg">
                         <div className="flex-grow grid grid-cols-1 gap-3 lg:grid-cols-4 md:grid-cols-2">
                             {
                                 kosts.map((data, i) => {

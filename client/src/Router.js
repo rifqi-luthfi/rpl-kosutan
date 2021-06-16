@@ -5,6 +5,8 @@ import {
     Route,
     Redirect
 } from "react-router-dom";
+
+// non-admin components
 import { GlobalContext } from './context/GlobalContext';
 import Header from './layout/Header';
 import HeaderLogin from './layout/HeaderLogin';
@@ -14,11 +16,16 @@ import Login from './page/Login';
 import Register from './page/Register';
 import DetailKost from './page/DetailKost';
 import Checkout from './page/Checkout'
-import { useHistory } from "react-router-dom";
-import Footer from './layout/Footer';
-import PostKost from './page/PostKost';
 import HeaderPemilik from './layout/HeaderPemilik';
-import Dashboard from './page/Dashboard';
+import History from './page/History'
+import EditProfile from './page/EditProfile';
+import About from './page/About'
+
+
+// admin components
+import Dashboard from './page/admin/Dashboard';
+import PostKost from './page/admin/PostKost';
+import DetailKostAdmin from './page/admin/DetailKost';
 
 const LoggedInRoute = ({ children, ...rest }) => {
     // protected route, digunakan untuk component yang hanya dapat 
@@ -124,15 +131,30 @@ const Router = () => {
                     {header}
                     <Checkout />
                 </LoggedInRoute>
+
+                <LoggedInRoute exact path="/history" >
+                    {header}
+                    <History />
+                </LoggedInRoute>
                 
                 <LoggedInRoutePemilik exact path="/dashboard">
                     {header}
                     <Dashboard />
                 </LoggedInRoutePemilik>
 
-                <LoggedInRoutePemilik exact path="/dashboard/addkost">
+                <LoggedInRoutePemilik exact path="/dashboard/kost/add">
                     {header}
                     <PostKost />
+                </LoggedInRoutePemilik>
+
+                <LoggedInRoutePemilik exact path="/dashboard/kost/detail/:id">
+                    {header}
+                    <DetailKostAdmin />
+                </LoggedInRoutePemilik>
+
+                <LoggedInRoutePemilik exact path="/dashboard/kost/edit/:id">
+                    {header}
+                    <PostKost type='edit' />
                 </LoggedInRoutePemilik>
                 
                 <NotLoggedInRoute exact path='/login'>

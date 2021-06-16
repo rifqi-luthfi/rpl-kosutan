@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import FieldError from '../components/FieldError'
 import axios from 'axios'
 import Alert from '../components/Alert'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 const PostKostSchema = Yup.object().shape({
     nama: Yup.string().required('nama is required'),
@@ -18,28 +18,48 @@ const PostKostSchema = Yup.object().shape({
     img: Yup.string().required("image is required"),
 })
 
-const FormPostKost = () => {
+const FormPostKost = ({ dataFetched }) => {
     const [error, setError] = useState()
     const [open, setOpen] = useState(false)
     const [openDanger, setOpenDanger] = useState(false)
     const history = useHistory()
+    const { id } = useParams()
     return (
         <>
-            
             <Formik
                 validateOnBlur={false}
                 initialValues={{
-                    nama: "", 
-                    alamat: "",
-                    kota: 0,
-                    jenis_kost:"",
-                    deskripsi:"",
-                    harga:"",
-                    img: ""
+                    nama: dataFetched ? dataFetched.nama_kost : "", 
+                    alamat: dataFetched ? dataFetched.alamat_kost : "",
+                    kota: dataFetched ? dataFetched.id_kota : 0,
+                    jenis_kost:dataFetched ? dataFetched.jenis_kost : "",
+                    deskripsi:dataFetched ? dataFetched.deskripsi : "",
+                    harga:dataFetched ? dataFetched.harga : "",
+                    img: dataFetched ? dataFetched.img : ""
                 }}
+                enableReinitialize
                 validationSchema={PostKostSchema}
                 onSubmit={async values => {
                 try {
+                    if (dataFetched) { 
+                        let responsePhoto
+                        if (values.img !== dataFetched.img) {
+                            const data = new FormData()
+                            data.append('file', values.img)
+                            responsePhoto = await axios.post("/kost/addKostPhoto", data)
+                        }
+                        await axios.put("/kost/updateKostData", {
+                            id_kost: id,
+                            nama: values.nama, 
+                            alamat: values.alamat,
+                            kota: values.kota, 
+                            jenis_kost: values.jenis_kost, 
+                            deskripsi: values.deskripsi,
+                            harga: values.harga, 
+                            img: responsePhoto ? responsePhoto.data.filename : values.img
+                        }) 
+                    }
+                    else {
                         const data = new FormData()
                         data.append('file', values.img)
                         const responsePhoto = await axios.post("/kost/addKostPhoto", data)
@@ -53,11 +73,13 @@ const FormPostKost = () => {
                             img: responsePhoto.data.filename
                         }
                         await axios.post("/kost/addKostData", dataKost)
-                        setOpen(true)
-                        setTimeout(() => {
-                            setOpen(false)
-                            history.push("/dashboard")
-                        }, 2500);
+                    }
+
+                    setOpen(true)
+                    setTimeout(() => {
+                        setOpen(false)
+                        history.push("/dashboard")
+                    }, 2500);
                     
                 } catch (error) {
                     setError(error.response.data.msg)
@@ -142,7 +164,7 @@ const FormPostKost = () => {
                 )}
 
             </Formik>
-            <Alert name="alert-success" variant='success' open={open} handleClose={() => setOpen(false)}>Kost successfuly added!</Alert>
+            <Alert name="alert-success" variant='success' open={open} handleClose={() => setOpen(false)}>{dataFetched ? "Kost successfuly updated!" : "Kost successfuly added!"}</Alert>
             <Alert name="alert-danger" variant='danger' open={openDanger} handleClose={() => setOpenDanger(false)}>{error}</Alert>
         </>
     )

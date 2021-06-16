@@ -85,7 +85,6 @@ const FormLogin = () => {
                         }
                         
                     } catch (error) {
-                        console.log(error.response.data.msg)
                         setError(error.response.data.msg)
                         handleOpenDanger()
                         setTimeout(() => {

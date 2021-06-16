@@ -1,27 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import Button from '../components/Button'
-import Tag from '../components/Tag'
+import ResidentTable from '../../components/admin/ResidentTable'
+import Tag from '../../components/Tag'
+import { useParams, useHistory } from 'react-router'
 import axios from 'axios'
-import { useHistory } from 'react-router'
-import { useParams } from 'react-router'
-
-
-const dataKost = { 
-    nama: "Kost InBandung 78",
-    updateAt: "20 March 2021",
-    harga: 1700000 
-}
 
 
 const DetailKost = () => {
     const [data, setData] = useState() 
+    const [resident, setResident] = useState([{}])
     const [error, setError] = useState("")
     const { id } = useParams()
     const history = useHistory()
 
-    const handleBookNow = () => {
-        history.push(`/kosts/book/${id}`)
-    }
     const fetchKostData = async () => {
         try {
             const response = await axios.get("/kost/getKostById", {
@@ -35,16 +25,30 @@ const DetailKost = () => {
             setError(error)
         }
     }
+    const fetchKostResident = async () => {
+        try {
+            const response = await axios.get("/kost/getKostResident", {
+                params : {
+                    id: id
+                }
+            })
+            setResident(response.data)
+            
+        } catch (error) {
+            setError(error)
+        }
+        
+    }
     useEffect(() => {
+        fetchKostResident()
         fetchKostData()
-
-    }, []) //eslint-disable-line
+    }, [resident]) //eslint-disable-line
 
     return (
-        
         <>
         {data !== undefined && (
-            <div className="container grid grid-cols-1 gap-8 my-32 lg:grid-cols-4 px-6 md:px-6 lg:px-0">
+            <>
+            <div className="container grid grid-cols-1 gap-8 mt-32 mb-8 lg:grid-cols-4 px-6 md:px-6 lg:px-0">
                 <img className="" alt="logo" src={process.env.PUBLIC_URL + `/kosts/${data.img}`} />
                 <div className="col-span-2 ">
                     <h1 className="text-4xl font-bold text-green-dark">{data.nama_kost}</h1>
@@ -86,14 +90,17 @@ const DetailKost = () => {
                             Rp {new Intl.NumberFormat(['ban', 'id']).format(data.harga)} 
                             <span className="font-normal">/months</span>
                         </h1>
-                        <div className="flex mt-7"  >
-                            <Button onClick={handleBookNow} variant="primary" size="lg">Book now</Button>
-                        </div>
                     </div>
                 </div>
             </div>
+            <div className="container px-6 md:px-6 lg:px-0">
+                <h1 className="text-green-dark text-4xl font-bold tracking-tighter mb-4">
+                    Kost Residents
+                </h1>
+                <ResidentTable data={resident}/>
+            </div>
+            </>
         )}
-
         </>
     )
 }

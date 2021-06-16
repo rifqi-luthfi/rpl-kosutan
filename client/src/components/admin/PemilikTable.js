@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom'
 import { useTable, useFilters } from 'react-table'
 import { faSearch, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ConfirmationModal from './ConfirmationModal'
+import ConfirmationModal from '../ConfirmationModal'
 import axios from 'axios'
-import Alert from './Alert'
+import Alert from '../Alert'
 
 const PemilikTable = ({ data }) => {
     const [filterInput, setFilterInput] = useState("");
@@ -61,7 +61,7 @@ const PemilikTable = ({ data }) => {
               id: 'delete',
               Cell: (tableProps) => (
                   <>
-                      <FontAwesomeIcon onClick={(e) => handleOpenModal(e, tableProps.row.original.id_kost)} className="text-red-400 hover:text-red-800 text-xl cursor-pointer transition-all" icon={faTrash}/>
+                      <FontAwesomeIcon onClick={(e) => handleOpenModal(e, tableProps)} className="text-red-400 hover:text-red-800 text-xl cursor-pointer transition-all" icon={faTrash}/>
                   </>
               )
             }
@@ -84,25 +84,27 @@ const PemilikTable = ({ data }) => {
         useFilters
       )
     const handleOnClickRow = (e, row) => {
-        console.log(row.original)
+        history.push(`/dashboard/kost/detail/${row.original.id_kost}`)
     }
     const handleAddKost = () => {
-        history.push("/dashboard/addkost")
+        history.push("/dashboard/kost/add")
     }
     const handleEditKost = (e, tableProps) => {
         e.stopPropagation();
-        console.log(tableProps.row.original)
+        history.push(`/dashboard/kost/edit/${tableProps.row.original.id_kost}`)
     }
     const handleOpenModal = (e, id) => {
+        e.stopPropagation();
         setShow(true)
         setDeleteTarget(id)
     }
     const handleDeleteKost = async (e) => {
         try {
             e.preventDefault()
-            const response = await axios.delete(`kost/deleteKost`, {
+            e.stopPropagation();
+            await axios.delete(`/kost/deleteKost`, {
                 params: {
-                    id: deleteTarget
+                    id: deleteTarget.row.original.id_kost
                 }
             })
             setOpen(true)
@@ -112,7 +114,7 @@ const PemilikTable = ({ data }) => {
             setShow(false)
             
         } catch (error) {
-            setError(error.response.data.msg)
+            setError(error)
             setOpenDanger(true)
             setTimeout(() => {
                 setOpenDanger(false)
@@ -132,7 +134,7 @@ const PemilikTable = ({ data }) => {
                 </span>
                 <button onClick={handleAddKost}  className="focus:outline-none bg-green text-white font-semibold rounded-md hover:bg-green-dark transition duration-300 ease-in-out py-3 px-6">Add kost</button>
             </div>
-            <div className="border z-30 overflow-x-scroll md:overflow-hidden">
+            <div className="border overflow-x-scroll md:overflow-hidden">
                 
                 <table className="bg-white rounded-xl min-w-full divide-y divide-gray-200 " {...getTableProps()}>
                     <thead className="bg-gray-50">
@@ -148,9 +150,9 @@ const PemilikTable = ({ data }) => {
                         {rows.map((row, i) => {
                         prepareRow(row);
                         return (
-                            <tr className="cursor-pointer hover:bg-gray-100" {...row.getRowProps()} onClick={(e) => handleOnClickRow(e, row)}>
+                            <tr className="cursor-pointer hover:bg-gray-100" {...row.getRowProps()} >
                                 {row.cells.map((cell) => {
-                                    return <td className="p-5" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                    return <td onClick={((e) => handleOnClickRow(e, row))} className="p-5" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                                 })}
                             </tr>
                         );

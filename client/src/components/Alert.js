@@ -17,7 +17,6 @@ const Alert = ({name, variant, open, handleClose, children}) => {
     
     const handleOpen = () => {
         if (open) {
-            console.log(name)
             const alert = document.getElementById(name).classList
             alert.remove("-bottom-full")
             alert.add("bottom-0")

@@ -9,12 +9,10 @@ const KostCard = ({data}) => {
     } else {
         path = "";
     }
-    console.log(path)
     const history = useHistory()
     const handleGotoDetail = () => {
         history.push(`/kosts/${data.id_kost}`)
     }
-    console.log(data.img)
     return (
         <div onClick={handleGotoDetail} class="shadow border rounded-2xl cursor-pointer">
             <img className="w-full h-64 object-cover rounded-t-2xl" alt="logo" src={`${path}/kosts/${data.img}`}></img>

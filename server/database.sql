@@ -1,9 +1,3 @@
-CREATE TABLE promo(
-    id_promo INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    gambar VARCHAR(128),
-    poster VARCHAR(128)
-);
-
 CREATE TABLE bank(
     id_bank INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nama_bank VARCHAR(64)
@@ -32,13 +26,6 @@ CREATE TABLE rekening(
         FOREIGN KEY (id_pemilik)
             REFERENCES pemilik(id_pemilik)
     ON DELETE CASCADE
-);
-
-CREATE TABLE admin(
-    id_admin INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
-    email VARCHAR(64), 
-    password VARCHAR(64)
-
 );
 
 CREATE TABLE penyewa(
@@ -88,20 +75,7 @@ CREATE TABLE pembayaran(
     id_rekening SERIAL,
     tanggal_trf date,
     total_pembayaran INT, 
-    status VARCHAR(32),
-
-    -- CONSTRAINT fk_rekening2
-    --     FOREIGN KEY (id_rekening)
-    --         REFERENCES rekening(id_rekening)
-    -- ON DELETE CASCADE,
-
-    -- CONSTRAINT fk_penyewa2
-    --     FOREIGN KEY (id_penyewa)
-    --         REFERENCES penyewa(id_penyewa),
-
-    -- CONSTRAINT fk_kost
-    --     FOREIGN KEY (id_kost)
-    --         REFERENCES kost(id_kost)
+    status VARCHAR(32)
 );
 
 CREATE TABLE sewa(
@@ -114,13 +88,10 @@ CREATE TABLE sewa(
 
     CONSTRAINT fk_kost
         FOREIGN KEY(id_kost)
-            REFERENCES kost(id_kost),
+            REFERENCES kost(id_kost)
+    ON DELETE CASCADE
 
     CONSTRAINT fk_penyewa
         FOREIGN KEY(id_penyewa)
-            REFERENCES penyewa(id_penyewa),
-
-    CONSTRAINT fk_pembayaran
-        FOREIGN KEY(id_pembayaran)
-            REFERENCES pembayaran(id_pembayaran)
+            REFERENCES penyewa(id_penyewa)
 );

@@ -1,12 +1,15 @@
 import React from 'react'
 import Button from '../components/Button'
 import Footer from '../layout/Footer'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
-
+    const history = useHistory()
+    const handleToKost = () => {
+        history.push("/kostlist")
+    }
     return (
         <>
             <hero className="container flex items-center justify-between mx-auto my-32 mb-12 px-12 lg:px-0 md:px-6  lg:my-32">
@@ -24,9 +27,8 @@ const Home = () => {
                         Kosutan is a platform that makes kost booking process  a lot easier. through our platform, Kost Renter and Kost Seeker can be easily connected. Let’s get started!
                     </h1>
                     <div className="flex mt-6 flex-col md:flex-row">
-                        <Button variant="primary" size="lg">Get Started</Button>
-                        <span className="p-1"></span>
-                        <Button variant="outlined" size="lg">How They Work</Button>    
+                        <Button variant="primary" size="lg" onClick={handleToKost}>Get Started</Button>
+           
                     </div>
                 </div>
                 <div className="hidden lg:block flex-shrink">
@@ -55,7 +57,7 @@ const Home = () => {
                                 </>
                             ))
                         }
-                        <div className="bg-green-dark hover:bg-green-darkest transition duration-300 ease-in-out h-40 bg-cover bg-center flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >
+                        <div onClick={handleToKost} className="bg-green-dark hover:bg-green-darkest transition duration-300 ease-in-out h-40 bg-cover bg-center flex items-center justify-center text-white font-semibold text-xl rounded-2xl cursor-pointer" >
                             <span className="flex items-center gap-3">
                                 See more 
                                 <FontAwesomeIcon className="mt-1" icon={faAngleDoubleRight}/>
@@ -66,9 +68,6 @@ const Home = () => {
             </div>
             <div className="bg-green-lightest py-20">
                 <content className="container mx-auto flex px-6 md:px-6 lg:px-0">
-                    {/* <div>
-                        <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" alt="logo" src={process.env.PUBLIC_URL + '/hero.png'} />
-                    </div> */}
                     <div>
                         <h1 className="text-green-dark text-4xl font-bold tracking-tighter mb-0">
                             Sewa sekarang besok tidur
@@ -76,7 +75,7 @@ const Home = () => {
                         <h1 className="mb-4 font-normal text-lg text-green-dark">
                             Kami siap membantu untuk membangun mimpimu
                         </h1>
-                        <Button variant="primary" size="lg">Sewa Kost ah</Button>
+                        <Button variant="primary" size="lg" onClick={handleToKost}>Sewa Kost ah</Button>
                     </div>
                 </content>
             </div>
