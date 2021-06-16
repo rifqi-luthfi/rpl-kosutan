@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import PemilikTable from '../../components/admin/PemilikTable'
 import axios from "axios";
 import BookRequestTable from '../../components/admin/BookRequestTable';
+import InputRekening from '../../components/admin/InputRekening';
 const Dashboard = () => {
     const [kosts, setKosts] = useState([{}])
     const [books, setBooks] = useState([{}])
@@ -58,11 +59,12 @@ const Dashboard = () => {
                     <div className="flex gap-5 mb-5">
                         <h1 onClick={() => setTab(0)} className={`text-xl py-3 border-b-2 h-full cursor-pointer ${tab === 0 ? 'text-green-dark font-bold border-green-dark' : 'text-gray-300 font-medium border-gray-300'}`}>Your Kost</h1>
                         <h1 onClick={() => setTab(1)} className={`text-xl py-3 border-b-2 h-full cursor-pointer ${tab === 1 ? 'text-green-dark font-bold border-green-dark' : 'text-gray-300 font-medium border-gray-300'}`}>Book Requests</h1>
+                        <h1 onClick={() => setTab(2)} className={`text-xl py-3 border-b-2 h-full cursor-pointer ${tab === 2 ? 'text-green-dark font-bold border-green-dark' : 'text-gray-300 font-medium border-gray-300'}`}>Add Rekening</h1>
                     </div>
                     {
-                        tab === 0 ? 
-                        <PemilikTable data={kosts}/> : 
-                        <BookRequestTable data={books} />
+                        tab === 0 ? <PemilikTable data={kosts}/> : 
+                        tab === 1 ? <BookRequestTable data={books} /> 
+                        : <InputRekening />                    
                     }
                 </content>
             </div> 
