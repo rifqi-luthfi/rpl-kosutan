@@ -18,8 +18,6 @@ import DetailKost from './page/DetailKost';
 import Checkout from './page/Checkout'
 import HeaderPemilik from './layout/HeaderPemilik';
 import History from './page/History'
-import EditProfile from './page/EditProfile';
-import About from './page/About'
 
 
 // admin components
